@@ -6,6 +6,7 @@ const Navbar =()=>{
         <Link to={"/"}>Home</Link>
         <br></br>
         <Link to={"/PageLoggin"}>Logar</Link>
+        <Link to={"/Register"}>Register</Link>
         </>
     )
 
