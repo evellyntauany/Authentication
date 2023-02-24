@@ -1,6 +1,6 @@
 //Cria a tabela 'User' quando não existir a tabela no banco de dados
 const Sequelize = require('sequelize');
-const db = require('./bd');
+const db = require('./dataBase');
 
 const User = db.define('users', {
     id: {
@@ -9,21 +9,21 @@ const User = db.define('users', {
         allowNull: false,
         primaryKey: true
     },
-    // name:{
-    //     type: Sequelize.STRING,
-    //     allowNull: false
-    // },
-    // email:{
-    //     type: Sequelize.STRING,
-    //     allowNull: false
-    // },
-    // senha:{
-    //     type: Sequelize.STRING,
-    //     allowNull: false
-    // }
+    name:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    email:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    senha:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 });
 
 //Verificar se a alteração na tabela
-//await User.sync({ alter: ture });
+User.sync();
 
 module.exports = User;
