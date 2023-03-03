@@ -1,3 +1,4 @@
+import axios from "axios";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
@@ -11,21 +12,39 @@ const Register = () => {
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const [senha, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
- 
 
 async function handleSubmit(e:FormEvent) {
   e.preventDefault()
   const user ={
     name,
     email,
-    password,
+    senha,
   }
-  console.log(user)
+  
+  console.log(user);
+  const config = {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    }
+  };
+  axios.post('http://localhost:3030/cadastrar', user, config)
+  .then(() => {
+    console.log('Cadastrado');
+  }).catch(() =>{
+      console.log('Não cadastrado');
+  });
+    
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 82c2fe949f578c6fabf54705f7c293bb09f25afe
   return (
     
     <div className="Container">
@@ -42,7 +61,7 @@ async function handleSubmit(e:FormEvent) {
         </div>
         <div>
           <label>Senha:</label>
-          <input name="password" type="number" onChange={e=>setPassword(e.target.value)}></input>
+          <input name="password" type="password" onChange={e=>setPassword(e.target.value)}></input>
         </div>
         <div>
           <label>Confirmar senha:</label>

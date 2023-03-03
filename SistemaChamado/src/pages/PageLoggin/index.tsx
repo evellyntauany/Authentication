@@ -10,8 +10,6 @@ const PageLoggin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
- 
-
 const handleSubmit= async ()=>{
     if(email && password){
         const isLogged = await auth.signin(email,password)
@@ -23,7 +21,6 @@ const handleSubmit= async ()=>{
     }
 
 }
-
   return (
     <div className="Container">
       <h1>Login sistema</h1>
