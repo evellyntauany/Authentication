@@ -1,13 +1,41 @@
-import { Link } from "react-router-dom"
+import { useContext } from "react"
+import LinkComponent from "../../components/Link"
+
+import { AuthContext } from "../../contexts/Auth/AuthContext"
+import './styles.css'
+
 
 const Navbar =()=>{
+    const {signout, user} = useContext(AuthContext)
     return(
-        <>
-        <Link to={"/"}>Home</Link>
-        <br></br>
-        <Link to={"/PageLoggin"}>Logar</Link>
-        <Link to={"/Register"}>Register</Link>
-        </>
+
+       <div className="ContainerNav">
+        <LinkComponent
+            toPage="/"
+            text="Home"
+       ></LinkComponent>
+       
+       <LinkComponent
+        toPage="/Register"
+        text="Registrar"
+       ></LinkComponent>
+
+        <LinkComponent
+        toPage="/PageLoggin"
+        text="Logar"
+       ></LinkComponent>
+
+        <LinkComponent
+        toPage="/PageAcess"
+        text="Pagina Privada"
+       ></LinkComponent>
+   
+    {user
+        ?  <button onClick={() => signout()}> Sair</button>
+        : ''
+      }
+    
+        </div>
     )
 
 }

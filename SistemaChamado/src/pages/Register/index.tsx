@@ -1,6 +1,9 @@
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
+import './stylesRegister.css';
+
+
 
 const Register = () => {
     
@@ -23,12 +26,12 @@ async function handleSubmit(e:FormEvent) {
   console.log(user)
 }
 
-
-
   return (
-    <div>
-      <h1>Login sistema</h1>
-      <form   onSubmit={handleSubmit}>
+    
+    <div className="Container">
+      <div className="FormCont">
+      <h1>Register sistema</h1>
+      <form onSubmit={handleSubmit}>
       <div>
           <label>Nome:</label>
           <input name="name" type="text" onChange={e=>setName(e.target.value)}/>
@@ -45,14 +48,13 @@ async function handleSubmit(e:FormEvent) {
           <label>Confirmar senha:</label>
           <input type="password" onChange={e=>setConfirmPassword(e.target.value)}></input>
         </div>
-        <div>
           <button
           type="submit"
-          >Entrar</button>
-        </div>
+          >Registrar</button>
         {error && <p>{error}</p>}
       </form>
-    </div>
+      </div>
+      </div>
   );
 };
 export default Register;

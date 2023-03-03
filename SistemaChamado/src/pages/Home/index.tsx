@@ -1,6 +1,9 @@
+import './style.css'
+
 const Home = () => {
+  
   return (
-    <h1>teste</h1>
+    <><img></img></>
   );
 };
 export default Home;

@@ -2,6 +2,7 @@ import { ChangeEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 
+
 const PageLoggin = () => {
     const navegate = useNavigate()
     const auth = useContext(AuthContext)
@@ -24,7 +25,7 @@ const handleSubmit= async ()=>{
 }
 
   return (
-    <div>
+    <div className="Container">
       <h1>Login sistema</h1>
       <form>
         <div>
