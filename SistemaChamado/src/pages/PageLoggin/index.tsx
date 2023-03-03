@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 
@@ -10,7 +10,9 @@ const PageLoggin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-const handleSubmit= async ()=>{
+const handleSubmit= async (e:FormEvent)=>{
+  e.preventDefault();
+  console.log(email, password);
     if(email && password){
         const isLogged = await auth.signin(email,password)
         if(isLogged){

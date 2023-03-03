@@ -10,7 +10,7 @@ export const useApi = () => ({
         return response.data;
     },
     signin:async(email:string,password:string)=>{
-        const response = await api.post('/signin',
+        const response = await api.post('http://localhost:3030/signin',
         {
             email,password
         })

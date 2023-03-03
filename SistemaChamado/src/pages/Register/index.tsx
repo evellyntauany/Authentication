@@ -12,7 +12,7 @@ const Register = () => {
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [senha, setPassword] = useState('');
+  const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
@@ -21,7 +21,7 @@ async function handleSubmit(e:FormEvent) {
   const user ={
     name,
     email,
-    senha,
+    password,
   }
   
   console.log(user);
@@ -41,10 +41,6 @@ async function handleSubmit(e:FormEvent) {
   });
     
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 82c2fe949f578c6fabf54705f7c293bb09f25afe
   return (
     
     <div className="Container">
