@@ -9,19 +9,27 @@ const cors = require('cors');
 app.use(cors());
 
 const User = require('./server/database/User');
+const { toast } = require('react-toastify');
 
 //const database = require('./database/dataBase.js');
 
-app.post('/cadastrar', async (req,res) => {
-    console.log('Resposta: ' + res.User);
-    var sql = "INSERT INTO customers (name, address) VALUES ?";
-    await User.create(req.body)
-    .then(() => {
-        console.log('Cadastrado');
-    }).catch(() =>{
-        console.log('Não cadastrado');
-    })
-})
+app.post('/cadastrar', async (req, res) => {
+  const email = req.body.email;
+
+  try {
+    // Verificar se o usuário já está registrado
+    const user = await User.findOne({ where: { email } });
+    if (user) {
+      return res.status(400).json({ error: 'O email já está em uso' });
+    }else{
+      await User.create(req.body)
+      console.log("email cadastrado com sucesso")
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Erro ao registrar usuário' });
+  }
+});
 
 app.post('/signin', function(req, res){
     const user = new User({
@@ -41,6 +49,6 @@ app.post('/signin', function(req, res){
     });
   });
 
-app.listen(3030, () =>{
+app.listen(3006, () =>{
     console.log("Servidor inciado na porta 3030");
 });
