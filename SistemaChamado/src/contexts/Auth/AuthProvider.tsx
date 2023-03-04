@@ -20,6 +20,11 @@ export const AuthProvider = ({children}: {children:JSX.Element}) =>{
         }
         validateToken();
     }, [api]);
+
+    const register = async(user:User)=>{
+        const data = await api.register(user);
+        return true
+    }
     
     const signin = async (email: string, password: string) => {
         const data = await api.signin(email, password);
@@ -43,7 +48,7 @@ export const AuthProvider = ({children}: {children:JSX.Element}) =>{
     }
 
     return(
-        <AuthContext.Provider value={{user,signin,signout}}>
+        <AuthContext.Provider value={{user,signin,signout,register}}>
             {children}
         </AuthContext.Provider>
     )

@@ -23,23 +23,9 @@ async function handleSubmit(e:FormEvent) {
     email,
     password,
   }
-  
+  auth.register(user)
   console.log(user);
-  const config = {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-    }
-  };
-  axios.post('http://localhost:3030/cadastrar', user, config)
-  .then(() => {
-    console.log('Cadastrado');
-  }).catch(() =>{
-      console.log('Não cadastrado');
-  });
-    
+ 
 }
   return (
     
