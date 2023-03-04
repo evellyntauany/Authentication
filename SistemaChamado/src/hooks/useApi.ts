@@ -2,8 +2,8 @@ import axios from "axios";
 import { User } from "../types/User";
 
 const api = axios.create({
-    baseURL:process.env.REACT_APP_API
-})
+    baseURL: process.env.REACT_APP_API
+});
 
 const config = {
     headers: {
@@ -22,20 +22,17 @@ export const useApi = () => ({
         return response.data;
     },
     register:async(user:User)=>{
-        axios.post('http://localhost:3030/cadastrar', user, config)
-        .then(() => {
-            return true
-        }).catch((error) =>{
-           console.log( error)
-           return false
-        });
+        const response = await api.post('/cadastrar', user, config);
+        return response.data;
     },
-    signin:async(email:string,password:string)=>{
-        const response = await api.post('http://localhost:3030/signin',
+    logando:async(email:string,password:string)=>{
+        const response = await api.post('/signin',
         {
             email,password
         })
+        console.log(response.data);
         return response.data;
+        
     },
     logout:async()=>{
         const response = await api.post('/logout');
