@@ -26,8 +26,8 @@ export const AuthProvider = ({children}: {children:JSX.Element}) =>{
         return true
     }
     
-    const signin = async (email: string, password: string) => {
-        const data = await api.signin(email, password);
+    const logando = async (email: string, password: string) => {
+        const data = await api.logando(email, password);
         if (data.user && data.token) {
             setUser(data.user);
             setToken(data.token);
@@ -48,7 +48,7 @@ export const AuthProvider = ({children}: {children:JSX.Element}) =>{
     }
 
     return(
-        <AuthContext.Provider value={{user,signin,signout,register}}>
+        <AuthContext.Provider value={{user,logando,signout,register}}>
             {children}
         </AuthContext.Provider>
     )

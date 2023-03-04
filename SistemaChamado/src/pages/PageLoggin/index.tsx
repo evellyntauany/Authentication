@@ -14,7 +14,7 @@ const handleSubmit= async (e:FormEvent)=>{
   e.preventDefault();
   console.log(email, password);
     if(email && password){
-        const isLogged = await auth.signin(email,password)
+        const isLogged = await auth.logando(email,password)
         if(isLogged){
             navegate('/')
         }else{
