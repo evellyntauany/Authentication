@@ -1,12 +1,13 @@
 import { createContext } from "react";
-import { User } from "../../types/User";
+import { User, UserLogin, UserRegister } from "../../types/User";
 
 
 export type AuthContextType = {
-    user:User | null;
-    logando: (email:string, password:string)=> Promise<boolean>;
+    user: User | undefined ;
+    logando: (usuario:UserLogin)=> Promise<void>;
     signout:() =>void;
-    register:(user:User)=>Promise<boolean>;
+    register:(usuario:UserRegister)=>Promise<void>;
+    isAuthenticaded: ()=>boolean;
 }
 
 

@@ -9,7 +9,6 @@ const cors = require('cors');
 app.use(cors());
 
 const User = require('./server/database/User');
-const { toast } = require('react-toastify');
 
 //const database = require('./database/dataBase.js');
 
@@ -20,10 +19,11 @@ app.post('/cadastrar', async (req, res) => {
     // Verificar se o usuário já está registrado
     const user = await User.findOne({ where: { email } });
     if (user) {
-      return res.status(400).json({ error: 'O email já está em uso' });
+      return res.status(409).json({ message: 'Este email já está sendo usado.' });
     }else{
-      await User.create(req.body)
+      const newUser = await User.create(req.body)
       console.log("email cadastrado com sucesso")
+      return res.status(201).json(newUser);
     }
   } catch (error) {
     console.error(error);
@@ -31,22 +31,14 @@ app.post('/cadastrar', async (req, res) => {
   }
 });
 
-app.post('/signin', function(req, res){
-    const user = new User({
-      email: req.body.email,
-      senha: req.body.senha
-    });
-  
-    req.login(user, function(err){
-      if (err) {
-        console.log(err);
-      }
-      else {
-        passport.authenticate("local")(req, res, function(){
-          res.send(user);
-        });
-      }
-    });
+app.post('/signin', async function(req, res){
+  const email = req.body.email;
+  const password = req.body.password;
+  const user = await User.findOne({ where: { email, password } });
+  if (!user) {
+    return res.status(401).json({ error: 'E-mail ou senha incorretos.' });
+  }
+  return res.send(user)
   });
 
 app.listen(3006, () =>{

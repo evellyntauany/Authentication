@@ -1,32 +1,31 @@
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
-
+import './stylesLogin.css';
 
 const PageLoggin = () => {
     const navegate = useNavigate()
     const auth = useContext(AuthContext)
+    const {user} = useContext(AuthContext)
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
 const handleSubmit= async (e:FormEvent)=>{
   e.preventDefault();
-  console.log(email, password);
-    if(email && password){
-        const isLogged = await auth.logando(email,password)
-        if(isLogged){
+  const usuario={
+    email, password
+  }
+  auth.logando(usuario)
+        if(user){
             navegate('/')
-        }else{
-            alert("nao deu certo")
-        }
     }
+  }
 
-}
   return (
-    <div className="Container">
+    <div className="Container containerLogin">
       <h1>Login sistema</h1>
-      <form>
+      <form className="formLogin">
         <div>
           <label>Email:</label>
           <input type="email" onChange={e=>setEmail(e.target.value)}/>
@@ -36,7 +35,7 @@ const handleSubmit= async (e:FormEvent)=>{
           <input type="password" onChange={e=>setPassword(e.target.value)}></input>
         </div>
         <div>
-          <button
+          <button className="btnLogin"
           type="submit"
           onClick={handleSubmit}
           >Entrar</button>

@@ -1,55 +1,82 @@
-import { useEffect, useState } from "react"
-import { useApi } from "../../hooks/useApi"
-import { User } from "../../types/User"
-import { AuthContext } from "./AuthContext"
+import { useEffect, useState } from 'react'
+import { User, UserLogin, UserRegister } from '../../types/User'
+import { AuthContext } from './AuthContext'
+import { setupAPIClient } from '../../hooks/useApi'
 
-export const AuthProvider = ({children}: {children:JSX.Element}) =>{
 
-    const [user, setUser] = useState<User | null>(null)
-    const api = useApi();
+export const AuthProvider = ({ children }: { children: JSX.Element }) => {
+    const [user, setUser] = useState<User>()
+    const api = setupAPIClient();
+    const TOKEN_KEY = "@token";
+
+   const isAuthenticaded =() => {
+    if(localStorage.getItem(TOKEN_KEY) !== null){
+       return true;
+    }
+      return false;
+  }
 
     useEffect(() => {
-        const validateToken = async () => {
-            const storageData = localStorage.getItem('authToken');
-            if (storageData) {
-                const data = await api.validateToken(storageData);
-                if (data.user) {
-                    setUser(data.user);
-                }
-            }
-        }
-        validateToken();
-    }, [api]);
+      const loggedInUser = localStorage.getItem("user");
+      if (loggedInUser) {
+        const foundUser = JSON.parse(loggedInUser); //Para string
+        setUser(foundUser);
+      }
+    }, [setUser]);
 
-    const register = async(user:User)=>{
-        const data = await api.register(user);
-        return true
-    }
-    
-    const logando = async (email: string, password: string) => {
-        const data = await api.logando(email, password);
-        if (data.user && data.token) {
-            setUser(data.user);
-            setToken(data.token);
-            return true;
-        }
-        return false;
-    }
+  async function register({ name, email, password }: UserRegister) {
+      await api.post('/cadastrar', {
+        name,
+        email,
+        password,
+      }).then(response => {
+        const {  name, email } = response.data;
+        const json = JSON.stringify(response.data); //para json
+        localStorage.setItem('user', json) //seta no meu localStorage       
+        setUser({
+        name,
+        email
+      })
 
-    const signout = async () => {
-        console.log("signout está sendo executada.");
-        setUser(null);
-        setToken('');
-        await api.logout();
-    }
+      }) .catch(error => {
+        alert(error.response.data.message); // Imprime a mensagem de erro retornada pelo servidor
+        return false
+      });
+  }
 
-    const setToken = (token: string) => {
-        localStorage.setItem('authToken', token);
-    }
+  const logando = async ({ email, password }: UserLogin) => {
+    await api.post('/signin', 
+    {
+        email,password
+    })
+    .then(response => {
+        console.log(response.data)
+        const {  name, email } = response.data;
+        const json = JSON.stringify(response.data);
+        localStorage.setItem('user', json)
+        setUser({
+        name,
+        email
+      })
+       }) .catch(error => {
+         alert(error.response.data.message); // Imprime a mensagem de erro retornada pelo servidor
+         return false
+       });
+  }
 
-    return(
-        <AuthContext.Provider value={{user,logando,signout,register}}>
-            {children}
-        </AuthContext.Provider>
-    )
+  const signout = async () => {
+    console.log('signout está sendo executada.')
+    setUser(undefined);
+    localStorage.clear();
+
+  }
+
+
+  return (
+    <AuthContext.Provider
+      value={{ user, logando, signout, register,isAuthenticaded }}
+    >
+      {children}
+    </AuthContext.Provider>
+  )
 }

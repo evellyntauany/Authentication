@@ -1,6 +1,6 @@
 const PageAcess=() =>{
     return(<h1>
-        Pagina de acesso logado
+       Dashboard
     </h1>)
 
 }

@@ -27,11 +27,11 @@ const Navbar =()=>{
 
         <LinkComponent
         toPage="/PageAcess"
-        text="Pagina Privada"
+        text="Dashboard"
        ></LinkComponent>
    
     {user
-        ?  <button onClick={() => signout()}> Sair</button>
+        ?  <button className="btnSingnout" onClick={() => signout()}> Sair</button>
         : ''
       }
     

@@ -3,28 +3,34 @@ import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import './stylesRegister.css';
+import { toast } from 'react-toastify';
 
 
 
 const Register = () => {
     
   const auth = useContext(AuthContext)
+  const navegate = useNavigate()
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  
 
 async function handleSubmit(e:FormEvent) {
   e.preventDefault()
-  const user ={
+  const usuario ={
     name,
     email,
     password,
   }
-  auth.register(user)
-  console.log(user);
+
+    auth.register(usuario)
+  if(auth.user){
+    navegate('/')
+}
+    
  
 }
   return (
@@ -32,7 +38,7 @@ async function handleSubmit(e:FormEvent) {
     <div className="Container">
       <div className="FormCont">
       <h1>Register sistema</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="formRegister" onSubmit={handleSubmit}>
       <div>
           <label>Nome:</label>
           <input name="name" type="text" onChange={e=>setName(e.target.value)}/>
@@ -49,10 +55,10 @@ async function handleSubmit(e:FormEvent) {
           <label>Confirmar senha:</label>
           <input type="password" onChange={e=>setConfirmPassword(e.target.value)}></input>
         </div>
-          <button
+          <button className="btn-reg"
           type="submit"
           >Registrar</button>
-        {error && <p>{error}</p>}
+
       </form>
       </div>
       </div>
