@@ -23,9 +23,10 @@ const handleSubmit= async (e:FormEvent)=>{
   }
 
   return (
-    <div className="Container containerLogin">
-      <h1>Login sistema</h1>
-      <form className="formLogin">
+    <div className="Container">
+    <div className="FormCont">
+    <h1>Login sistema</h1>
+    <form className="formRegister" onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
           <input type="email" onChange={e=>setEmail(e.target.value)}/>
@@ -41,6 +42,7 @@ const handleSubmit= async (e:FormEvent)=>{
           >Entrar</button>
         </div>
       </form>
+    </div>
     </div>
   );
 };
