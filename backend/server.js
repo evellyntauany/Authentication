@@ -8,6 +8,11 @@ const cors = require('cors');
 
 app.use(cors());
 
+
+const router = require("../backend/server/routes/index")
+router(app)
+
+
 const User = require('./server/database/User');
 
 //const database = require('./database/dataBase.js');

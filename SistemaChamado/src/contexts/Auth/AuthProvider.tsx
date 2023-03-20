@@ -7,14 +7,6 @@ import { setupAPIClient } from '../../hooks/useApi'
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const [user, setUser] = useState<User>()
     const api = setupAPIClient();
-    const TOKEN_KEY = "@token";
-
-   const isAuthenticaded =() => {
-    if(localStorage.getItem(TOKEN_KEY) !== null){
-       return true;
-    }
-      return false;
-  }
 
     useEffect(() => {
       const loggedInUser = localStorage.getItem("user");
@@ -54,6 +46,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         const {  name, email } = response.data;
         const json = JSON.stringify(response.data);
         localStorage.setItem('user', json)
+        console.log("json:",json)
+        console.log("name:",name)
         setUser({
         name,
         email
@@ -74,7 +68,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, logando, signout, register,isAuthenticaded }}
+      value={{ user, logando, signout, register }}
     >
       {children}
     </AuthContext.Provider>

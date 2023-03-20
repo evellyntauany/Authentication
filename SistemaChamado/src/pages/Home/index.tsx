@@ -1,9 +1,12 @@
 import './style.css'
+import Navbar from '../usuario_cliente/Navbar/index';
 
 const Home = () => {
   
   return (
-    <><img></img></>
+    <>
+    <Navbar></Navbar>
+    <img className='hero_home'></img></>
   );
 };
 export default Home;

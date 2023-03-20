@@ -7,7 +7,6 @@ export type AuthContextType = {
     logando: (usuario:UserLogin)=> Promise<void>;
     signout:() =>void;
     register:(usuario:UserRegister)=>Promise<void>;
-    isAuthenticaded: ()=>boolean;
 }
 
 

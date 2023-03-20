@@ -1,6 +1,6 @@
 .btnLogin{
     padding:20px;
-    background: #0066A2;
+    background: #7C78B8;
 	color: white;
 }
 .formLogin{
@@ -8,4 +8,3 @@
     box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.349);
     justify-content: center;
 }
-.containerLogin{}

@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import PageAcess from "../../pages/PageAcess"
+import PageAcess from "../../pages/usuario_cliente/PageAcess"
 import PageLoggin from "../../pages/PageLoggin"
 import { AuthContext } from "./AuthContext"
 

@@ -1,20 +1,19 @@
 .ContainerNav{
     padding: 20px;
-   background-color: #0067a2cb;
+   background-color: #7C78B8;
    display: flex;
    justify-content: center;
    align-items: center;
 }
-a{
+.ContainerNav a{
     margin: 0 1rem ;
     text-decoration:none;
-    font-family:  'Lucida Sans Regular';
-    font-size: 20px;
+    font-size: 22px;
     color: white;
 }
 .btnSingnout{
     width: 5%;
     height: 25px;
-    background-color: #0066A2;
+    background-color: #7C78B8;
     color: white;
 }

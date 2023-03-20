@@ -1,7 +1,7 @@
 import { useContext } from "react"
-import LinkComponent from "../../components/Link"
+import LinkComponent from "../../../components/Link"
 
-import { AuthContext } from "../../contexts/Auth/AuthContext"
+import { AuthContext } from "../../../contexts/Auth/AuthContext"
 import './styles.css'
 
 
