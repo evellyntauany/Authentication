@@ -17,6 +17,10 @@ const User = require('./server/database/User');
 
 //const database = require('./database/dataBase.js');
 
+app.get('/minha-rota', (req, res) => {
+  return res.status(201).json({ message: 'indo' });
+});
+
 app.post('/cadastrar', async (req, res) => {
   const email = req.body.email;
 
