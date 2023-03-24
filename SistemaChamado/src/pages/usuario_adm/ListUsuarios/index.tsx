@@ -1,6 +1,23 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { setupAPIClient } from './../../../hooks/useApi';
 
-
+const api = setupAPIClient();
 const ListUsuarios = () => {
+
+
+ 
+  const [newData, setNewData] = useState({});
+
+  useEffect(() => {
+    api
+      .get("/admin/users")
+      .then((response) => console.log(response.data))
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  }, []);
+
 
     const users = [{
         "nome":"evellyn",
@@ -16,7 +33,7 @@ const ListUsuarios = () => {
   );
 
     return(
-        <ul>{listItems}</ul>
+       <p>{listItems}</p>
     
     )
 

@@ -1,3 +1,5 @@
+import LinkComponent from '../../../components/Link';
+import ListUsuarios from '../ListUsuarios';
 import Navbar from '../Navbar';
 import './styleHomeAdm.css';
 
@@ -10,11 +12,16 @@ const Home = () => {
     <div className="hero"></div>
     <div className="content_list">
     <section className="list_users">
-      <h4>Acesar funcionarios cadastrados no site</h4>
+    <LinkComponent
+      toPage="/listUsuarios"
+      text="Acesar funcionarios cadastrados no sistema"
+    ></LinkComponent>
+      <h4></h4>
     </section>
     <section className="list_users">
-      <h4>Acesar clientes cadastrados no site</h4>
+      <h4>Acesar clientes cadastrados no sistema</h4>
     </section>
+
     </div>
 
     </div>
