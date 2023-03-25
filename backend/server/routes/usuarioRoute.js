@@ -7,9 +7,6 @@ router.get("/admin/users" ,(req, res) => {
     res.send(resposta);
 });
 
-router.post("/admin/users" ,(req, res) => {
-    res.send("criando um novo usuario")
-});
 
 router.put("/admin/users/:id" ,(req, res) => {
     const {id} = req.params

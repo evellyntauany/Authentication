@@ -3,9 +3,7 @@ const app = express();
 //const routes = require('./routes/routes.js');
 
 app.use(express.json());
-
 const cors = require('cors');
-
 app.use(cors());
 
 
@@ -14,6 +12,9 @@ router(app)
 
 
 const User = require('./server/database/User');
+
+//ADM
+const User_admin = require('./server/database/User_admin');
 
 //const database = require('./database/dataBase.js');
 
@@ -51,5 +52,5 @@ app.post('/signin', async function(req, res){
   });
 
 app.listen(3006, () =>{
-    console.log("Servidor inciado na porta 3030");
+    console.log("Servidor inciado na porta 3006");
 });
