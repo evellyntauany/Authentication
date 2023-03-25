@@ -1,12 +1,10 @@
 import { createContext } from "react";
+import { UserRegister } from "../../types/User";
 
 
 
 export type AuthContextType = {
-    createUser: (id:number)=> Promise<void>;
- //   readUser: (usuario:UserLogin)=> Promise<User>;
-    updateUser: (id:number)=> Promise<void>;
-    deleteUser: (id:number)=> Promise<void>;
+    createUser:(usuario:UserRegister)=>Promise<void>;
     
 }
 

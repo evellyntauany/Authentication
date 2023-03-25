@@ -1,9 +1,8 @@
-import axios from "axios";
+
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import './stylesRegister.css';
-import { toast } from 'react-toastify';
 
 
 
@@ -16,7 +15,7 @@ const Register = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  
+  const navigate = useNavigate();
 
 async function handleSubmit(e:FormEvent) {
   e.preventDefault()
@@ -25,12 +24,8 @@ async function handleSubmit(e:FormEvent) {
     email,
     password,
   }
-
-    auth.register(usuario)
-  if(auth.user){
-    navegate('/')
-}
-    
+  auth.register(usuario)
+  return navigate('/')
  
 }
   return (

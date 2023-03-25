@@ -1,28 +1,40 @@
 
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { FormEvent } from 'react';
+import { AuthContext } from '../../../contexts/CrudUsers/AuthContext';
+import { setupAPIClient } from '../../../hooks/useApi';
+import {useNavigate} from 'react-router-dom';
+
+
 const RegisterUsuario = () => {
     
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const api = setupAPIClient();
+  const {createUser} = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  
   
 
-async function handleSubmit(e:FormEvent) {
+async function handleSubmituser(e:FormEvent) {
+  console.log("clicando no botao")
   e.preventDefault()
-  const usuario ={
+  const user ={
     name,
     email,
     password,
-  }   
- 
+  }
+  createUser(user)
+  return navigate('/admin')
 }
   return (
     
     <div className="Container">
       <div className="FormCont">
       <h1>Pagina de registro de usuario funcionario</h1>
-      <form className="formRegister" onSubmit={handleSubmit}>
+      <form className="formRegister" onSubmit={handleSubmituser}>
       <div>
           <label>Nome:</label>
           <input name="name" type="text" onChange={e=>setName(e.target.value)}/>

@@ -4,6 +4,7 @@ import { RequireAuth } from "./contexts/Auth/RequireAuth";
 import HomeAdm from "./pages/usuario_adm/HomeAdm";
 import ListUsuarios from "./pages/usuario_adm/ListUsuarios";
 import PageLogginAdm from "./pages/usuario_adm/PageLogginAdm";
+import RegisterUsuario from "./pages/usuario_adm/RegisterUsuario";
 
 import Home from "./pages/Home";
 import Navbar from "./pages/usuario_cliente/Navbar";
@@ -24,6 +25,7 @@ function App() {
         <Route path="/logginAdm" element={<PageLogginAdm/>} />
         <Route path="/admin" element={<HomeAdm></HomeAdm>} />
         <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
+        <Route path="/RegisterUsers" element={<RegisterUsuario/>}/>
         
       </Routes>
   );
