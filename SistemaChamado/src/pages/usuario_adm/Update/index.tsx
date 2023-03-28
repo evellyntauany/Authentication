@@ -38,14 +38,14 @@ const UpdateUser = () => {
          
   }
   return (
-    <div className="Container">
+    <div className="ContainerUpdate">
       <h1>Pagina de atualizacao de cadastro</h1>
       <form onSubmit={handleSubmit}>
         <label>Nome:</label>
         <input
           name="name"
           type="text"
-
+         placeholder={myData[0]}
           onChange={(e) => setName(e.target.value)}
         />
 
@@ -53,6 +53,7 @@ const UpdateUser = () => {
         <input
           name="email"
           type="email"
+          placeholder={myData[1]}
           onChange={(e) => setEmail(e.target.value)}
         />
 

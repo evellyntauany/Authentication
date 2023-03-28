@@ -14,11 +14,7 @@ interface usersdb {
 const ListUsuarios = () => {
   const api = setupAPIClient()
   const [myData, setMyData] = useState<usersdb[]>([])
-  const [open, setOpen] = useState(true)
 
-  const Update = (users: usersdb) => {
-    console.log(users)
-  }
 
   const onDelete = (id: number) => {
     console.log(id)
@@ -44,7 +40,7 @@ const ListUsuarios = () => {
           Excluir
         </button>
         <button type="button">
-          <Link to={`/update/${item.id}`}>
+          <Link to={`/user/${item.id}`}>
           Atualizar
           </Link>
         </button>

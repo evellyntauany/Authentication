@@ -27,7 +27,7 @@ function App() {
         <Route path="/admin" element={<HomeAdm></HomeAdm>} />
         <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
         <Route path="/RegisterUsers" element={<RegisterUsuario/>}/>
-        <Route path="/update/:id" element={<Update/>}/>
+        <Route path="/user/:id" element={<Update/>}/>
 
         
       </Routes>

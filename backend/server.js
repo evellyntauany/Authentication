@@ -117,34 +117,7 @@ app.post('/signin_admin', async function (req, res) {
   }
 });
 
-//Alterar um usuário
-app.put('/update/:id', async (req, res) => {
-  const userId = req.params.id;
 
-  try {
-    // Verificar se o usuário existe
-    const user = await User.findByPk(userId);
-
-    if (!user) {
-      return res.status(404).json({ message: 'Usuário não encontrado.' });
-    }
-
-    // Atualizar os dados do usuário
-    user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
-
-    if (req.body.password) {
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(req.body.password, salt);
-    }
-
-    await user.save();
-    res.status(200).json(user);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: 'Erro ao atualizar usuário' });
-  }
-});
 
 // Rota para renderizar a página com a tabela
 app.get('/table', async (req, res) => {
