@@ -22,6 +22,14 @@ app.get('/minha-rota', (req, res) => {
   return res.status(201).json({ message: 'indo' });
 });
 
+app.get("/search/:id" ,(req, res) => {
+  console.log("servidor")
+  const id = req.params.id;
+  const query = 'SELECT * FROM usuarios WHERE id = ?';
+  User.query(query,[id])
+  console.log(query)
+});
+
 app.post('/cadastrar', async (req, res) => {
   const email = req.body.email;
 
