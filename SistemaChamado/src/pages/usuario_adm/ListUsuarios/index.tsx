@@ -44,8 +44,9 @@ const ListUsuarios = () => {
           Excluir
         </button>
         <button type="button">
-          <Link to={`/update/${item.id}`}></Link>
+          <Link to={`/update/${item.id}`}>
           Atualizar
+          </Link>
         </button>
         <br></br>
       </div>
