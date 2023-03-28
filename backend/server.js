@@ -12,10 +12,9 @@ router(app)
 
 
 const User = require('./server/database/User');
-const User_admin = require('./server/database/User_admin');
 
-<<<<<<< HEAD
 //ADM
+const User_admin = require('./server/database/User_admin');
 const User_admin = require('./server/database/User_admin');
 
 //const database = require('./database/dataBase.js');
@@ -24,19 +23,9 @@ app.get('/minha-rota', (req, res) => {
   return res.status(201).json({ message: 'indo' });
 });
 
-app.get("/search/:id" ,(req, res) => {
-  console.log("servidor")
-  const id = req.params.id;
-  const query = 'SELECT * FROM usuarios WHERE id = ?';
-  User.query(query,[id])
-  console.log(query)
-});
+
 
 app.post('/cadastrar', async (req, res) => {
-=======
-//Cadastrar user normal
-app.post('/register', async (req, res) => {
->>>>>>> fd706864558aacf22ac0e49a82e05d40deacc3f3
   const email = req.body.email;
 
   try {
@@ -174,9 +163,3 @@ app.listen(3006, () => {
   console.log("Servidor inciado na porta 3030");
 });
 
-<<<<<<< HEAD
-app.listen(3006, () =>{
-    console.log("Servidor inciado na porta 3006");
-});
-=======
->>>>>>> fd706864558aacf22ac0e49a82e05d40deacc3f3
