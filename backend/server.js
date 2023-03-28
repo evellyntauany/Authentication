@@ -15,7 +15,6 @@ const User = require('./server/database/User');
 
 //ADM
 const User_admin = require('./server/database/User_admin');
-const User_admin = require('./server/database/User_admin');
 
 //const database = require('./database/dataBase.js');
 
