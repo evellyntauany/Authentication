@@ -5,6 +5,7 @@ import HomeAdm from "./pages/usuario_adm/HomeAdm";
 import ListUsuarios from "./pages/usuario_adm/ListUsuarios";
 import PageLogginAdm from "./pages/usuario_adm/PageLogginAdm";
 import RegisterUsuario from "./pages/usuario_adm/RegisterUsuario";
+import Update from "./pages/usuario_adm/Update";
 
 import Home from "./pages/Home";
 import Navbar from "./pages/usuario_cliente/Navbar";
@@ -26,6 +27,8 @@ function App() {
         <Route path="/admin" element={<HomeAdm></HomeAdm>} />
         <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
         <Route path="/RegisterUsers" element={<RegisterUsuario/>}/>
+        <Route path="/update/:id" element={<Update/>}/>
+
         
       </Routes>
   );

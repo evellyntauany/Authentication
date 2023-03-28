@@ -10,12 +10,12 @@
 
 }
 .content_list{
+    display: flex;
     width: 100%;
 }
 
 .hero{
     background-image: url(../../../assets/preview.jpg);
-    background-color: aqua;
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -23,9 +23,23 @@
     background-position: center;
 }
 .list_users{
-    padding: 1em;
-    margin: 1em 2em;
-    border: 1px solid #ccc;
-    width: 20%;
-    height: 20%;
+    margin: 2em 1em;
+    max-width: 100%;
+
+}
+.list_users div{
+    display: flex;
+    border: 1px transparent;
+    background-color: #fff;
+    width: 100%;
+    height: 40%;
+    box-shadow: 5px 5px #80808036;
+    padding: 5%;
+    
+}
+.list_users a{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-decoration-line: unset;
 }

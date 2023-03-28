@@ -11,22 +11,21 @@ const Home = () => {
         <div className="hero"></div>
         <div className="content_list">
           <section className="list_users">
+            <div>
             <LinkComponent
               toPage="/listUsuarios"
               text="Acesar funcionarios cadastrados no sistema"
             ></LinkComponent>
-            <h4></h4>
+            </div>
+    
           </section>
           <section className="list_users">
+            <div>
             <h4>Acesar clientes cadastrados no sistema</h4>
+            </div>
           </section>
 
-          <section>
-            <LinkComponent
-              toPage="/RegisterUsers"
-              text="Registro de Usuario funcionario"
-            ></LinkComponent>
-          </section>
+          
         </div>
       </div>
     </>
