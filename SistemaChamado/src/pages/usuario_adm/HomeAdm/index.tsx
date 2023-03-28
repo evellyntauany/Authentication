@@ -12,23 +12,23 @@ const Home = () => {
         <div className="content_list">
           <section className="list_users">
             <div>
-            <LinkComponent
-              toPage="/listUsuarios"
-              text="Acesar funcionarios cadastrados no sistema"
-            ></LinkComponent>
+              <LinkComponent
+                toPage="/listUsuarios"
+                text="Acesar funcionarios cadastrados no sistema"
+              ></LinkComponent>
             </div>
-    
           </section>
           <section className="list_users">
             <div>
-            <h4>Acesar clientes cadastrados no sistema</h4>
+              <h4>Acesar clientes cadastrados no sistema</h4>
             </div>
           </section>
-
-          
         </div>
       </div>
     </>
   )
 }
 export default Home
+
+
+

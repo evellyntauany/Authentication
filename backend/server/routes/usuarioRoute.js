@@ -41,7 +41,7 @@ router.put("/updateId/:id" ,(req, res) => {
     console.log("atualizacao do usuario com id ", id)
     const { name, email } = req.body;
     console.log("atualizacao :", name)
-   // let SQL = "UPDATE FROM users SET `name` = ?, `email` = ?, `password` = ? WHERE id =?"
+    let SQL = "UPDATE FROM users SET `name` = ?, `email` = ?, `password` = ? WHERE id =?"
    // User.query(SQL,[id])
 });
 
