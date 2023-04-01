@@ -2,10 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import { RequireAuth } from "./contexts/Auth/RequireAuth";
 
 import HomeAdm from "./pages/usuario_adm/HomeAdm";
-import ListUsuarios from "./pages/usuario_adm/ListUsuarios";
+import ListUsuarios from "./pages/usuario_adm/Crud/ListUsuarios";
 import PageLogginAdm from "./pages/usuario_adm/PageLogginAdm";
 import RegisterUsuario from "./pages/usuario_adm/RegisterUsuario";
-import Update from "./pages/usuario_adm/Update";
+import Update from "./pages/usuario_adm/Crud/Update";
 
 import Home from "./pages/Home";
 import Navbar from "./pages/usuario_cliente/Navbar";

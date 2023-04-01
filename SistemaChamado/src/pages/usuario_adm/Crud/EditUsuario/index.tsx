@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FormEvent } from 'react';
 
-//function UserEditForm(props) {
 function UserEditForm() {
-  //const [name, setName] = useState(props.user.name);
-  //const [email, setEmail] = useState(props.user.email);
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

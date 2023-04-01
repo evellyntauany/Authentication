@@ -1,7 +1,7 @@
 import LinkComponent from '../../../components/Link'
-import ListUsuarios from '../ListUsuarios'
+import ListUsuarios from '../Crud/ListUsuarios'
 import Navbar from '../Navbar'
-import './styleHomeAdm.css'
+import './styleHomeAdm.scss'
 
 const Home = () => {
   return (
@@ -11,16 +11,19 @@ const Home = () => {
         <div className="hero"></div>
         <div className="content_list">
           <section className="list_users">
-            <div>
+            <div className="content_button">
               <LinkComponent
                 toPage="/listUsuarios"
-                text="Acesar funcionarios cadastrados no sistema"
+                text="Acessar funcionarios cadastrados no sistema"
               ></LinkComponent>
             </div>
           </section>
           <section className="list_users">
-            <div>
-              <h4>Acesar clientes cadastrados no sistema</h4>
+            <div className="content_button">
+            <LinkComponent
+                toPage="/#"
+                text="Acessar clientes cadastrados no sistema"
+              ></LinkComponent>
             </div>
           </section>
         </div>

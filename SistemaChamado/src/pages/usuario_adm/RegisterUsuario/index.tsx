@@ -27,7 +27,7 @@ async function handleSubmituser(e:FormEvent) {
     password,
   }
   createUser(user)
-  return navigate('/admin')
+  return navigate('/listUsuarios')
 }
   return (
     

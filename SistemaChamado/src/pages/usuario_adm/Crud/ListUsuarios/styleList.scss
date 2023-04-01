@@ -1,0 +1,84 @@
+.user {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+
+  &__each {
+    margin-bottom: 1rem;
+    list-style: none;
+  }
+}
+
+.content_link {
+  margin: 1rem;
+
+  &__h1 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+}
+
+
+.content_link a {
+  text-decoration-line: unset;
+  box-shadow: 0px 0px 12px -6px rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    background-color: #5c5696bf;
+    color: #fff;
+  }
+}
+
+
+
+/* CSS */
+.button-delete {
+  appearance: none;
+  background-color: #b81c1c;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+
+}
+
+
+.button-delete:hover {
+  background-color: #b81c1caf;
+}
+
+
+.button-update {
+  appearance: none;
+  background-color: #0b6bc5af;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+
+  &__link {
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+.button-update:hover {
+  background-color: #0b6bc594;
+}

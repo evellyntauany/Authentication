@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { setupAPIClient } from './../../../hooks/useApi'
+import LinkComponent from '../../../../components/Link'
+import { setupAPIClient } from '../../../../hooks/useApi'
 
 const UpdateUser = () => {
   const api = setupAPIClient()
   const { id } = useParams()
-  const [myData, setMyData] = useState('')
-
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
@@ -14,8 +13,9 @@ const UpdateUser = () => {
     api
       .get(`/search/${id}`)
       .then((res) => {
-        const data = res.data // data is already of type any
-        setMyData(data) // use .json() method
+        const data = res.data
+        setName(data.user.name)
+        setEmail(data.user.email) 
       })
       .catch((err) => {
         console.error('ops! ocorreu um erro' + err)
@@ -38,30 +38,31 @@ const UpdateUser = () => {
          
   }
   return (
-    <div className="ContainerUpdate">
+    <><div className="ContainerUpdate">
       <h1>Pagina de atualizacao de cadastro</h1>
       <form onSubmit={handleSubmit}>
         <label>Nome:</label>
         <input
           name="name"
           type="text"
-          placeholder={myData[0]}
-          onChange={(e) => setName(e.target.value)}
-        />
+          value={name}
+          onChange={(e) => setName(e.target.value)} />
 
         <label>Email:</label>
         <input
           name="email"
           type="email"
-          placeholder={myData[1]}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          value={email}
+          onChange={(e) => setEmail(e.target.value)} />
 
         <label>Senha:</label>
         <input name="password" type="password"></input>
-        <button type="submit">Atualizar</button>
+        <button className='button-update' type="submit">Atualizar</button>
       </form>
+
     </div>
+    <LinkComponent toPage="/listUsuarios" text="Voltar"></LinkComponent></>
+    
   )
 }
 
