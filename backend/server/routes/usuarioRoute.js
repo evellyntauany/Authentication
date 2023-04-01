@@ -27,10 +27,11 @@ router.delete("/delete/:id", (req, res) => {
     const {
         id
     } = req.params
-    console.log("o id deletado", id)
 
-    //  let SQL = "DELETE FROM users WHERE id= ?"
-    // User.query(SQL,[id])
+    connection.query(`DELETE FROM users WHERE id = ${id}`, (error, results) => {
+        if (error) throw error;
+        console.log(`Usuário com ID ${id} foi deletado com sucesso.`);
+    });
 });
 
 //Alterar um usuário
@@ -83,14 +84,22 @@ router.put("/user/:id", (req, res) => {
 //Recuperando informacoes de um ID
 router.get("/search/:id", async (req, res) => {
     const id = req.params.id;
-    await User.findByPk(id).then(user => {
-        userN = [
-            user.name,
-            user.email
-        ]
-        res.send(userN);
-    })
+    try {
+        // Encontre o registro no banco de dados pelo ID
+        const user = await User.findByPk(id);
+    
+        if (!user) {
+          return res.status(404).send({ message: 'Registro não encontrado' });
+        }
+    
+        return res.status(200).json({ user });
+      } catch (error) {
+        console.error(error);
+        return res.status(500).send({ message: 'Erro ao buscar o registro' });
+      }
 });
+
+
 
 
 

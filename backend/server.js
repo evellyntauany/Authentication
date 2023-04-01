@@ -44,22 +44,27 @@ app.post('/cadastrar', async (req, res) => {
 
 //Login user normal
 app.post('/signin', async function (req, res) {
-  try {
-    const user = await User.findOne({ email: req.body.email });
+  const email = req.body.email;
+  const password = req.body.password;
+  console.log(">>email",email)
+  console.log(">>senha",password)
 
+  try {
+    const user = await User.findOne({ email });
+    console.log("se encontrou o user>>", user)
     if (!user) {
       return res.status(400).send("Não localizamos o name!");
     }
 
-    const passwordMatch = await bcrypt.compare(req.body.password, user.password);
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (passwordMatch) {
-      res.send('você logou!');
+      res.send(user);
     } else {
-      res.send('não logou!')
+      res.status(403).json({ error: 'Senha incorreta' });
     }
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).json({ error: 'Erro ao logar' });
   }
 });
 
