@@ -16,13 +16,6 @@ const User = require('./server/database/User');
 //ADM
 const User_admin = require('./server/database/User_admin');
 
-//const database = require('./database/dataBase.js');
-
-app.get('/minha-rota', (req, res) => {
-  return res.status(201).json({ message: 'indo' });
-});
-
-
 
 app.post('/cadastrar', async (req, res) => {
   const email = req.body.email;
@@ -132,6 +125,6 @@ app.get('/table', async (req, res) => {
 
 
 app.listen(3006, () => {
-  console.log("Servidor inciado na porta 3030");
+  console.log("Servidor inciado na porta 3006");
 });
 
