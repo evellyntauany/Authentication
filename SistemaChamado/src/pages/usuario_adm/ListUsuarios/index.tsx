@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 import Navbar from '../../usuario_adm/Navbar'
 import { setupAPIClient } from './../../../hooks/useApi'
 import { Link } from 'react-router-dom'
-import './styleList.css';
-
+import './styleList.css'
+import RegisterUsuario from '../RegisterUsuario'
+import LinkComponent from '../../../components/Link'
 
 interface usersdb {
   id: number
@@ -14,7 +15,6 @@ interface usersdb {
 const ListUsuarios = () => {
   const api = setupAPIClient()
   const [myData, setMyData] = useState<usersdb[]>([])
-
 
   const onDelete = (id: number) => {
     console.log(id)
@@ -40,9 +40,7 @@ const ListUsuarios = () => {
           Excluir
         </button>
         <button type="button">
-          <Link to={`/user/${item.id}`}>
-          Atualizar
-          </Link>
+          <Link to={`/user/${item.id}`}>Atualizar</Link>
         </button>
         <br></br>
       </div>
@@ -52,10 +50,13 @@ const ListUsuarios = () => {
   return (
     <div className="users">
       <Navbar></Navbar>
-
+      <LinkComponent
+        toPage="/RegisterUsers"
+        text="Registrar novo usuario no sistema"
+      ></LinkComponent>
       <div>Listando todos os usuarios do banco</div>
       <br></br>
-      <div className='allList'>{myStateMap}</div>
+      <div className="allList">{myStateMap}</div>
     </div>
   )
 }

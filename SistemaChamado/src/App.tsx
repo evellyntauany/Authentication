@@ -12,16 +12,19 @@ import Navbar from "./pages/usuario_cliente/Navbar";
 import PageAcess from "./pages/usuario_cliente/PageAcess";
 import PageLoggin from "./pages/PageLoggin";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile/index";
 import './AppStyle.css'
+
 
 
 function App() {
   return (
-      <Routes>
+    <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/PageLoggin" element={<RequireAuth><PageAcess/></RequireAuth>} />
         <Route path="PageAcess" element={<RequireAuth><PageAcess/></RequireAuth>} />
         <Route path="/Register" element={<Register/>}/>
+        <Route path="/Profile" element={<Profile/>}/>
 
         <Route path="/logginAdm" element={<PageLogginAdm/>} />
         <Route path="/admin" element={<HomeAdm></HomeAdm>} />

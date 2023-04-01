@@ -45,7 +45,7 @@ const UpdateUser = () => {
         <input
           name="name"
           type="text"
-         placeholder={myData[0]}
+          placeholder={myData[0]}
           onChange={(e) => setName(e.target.value)}
         />
 
