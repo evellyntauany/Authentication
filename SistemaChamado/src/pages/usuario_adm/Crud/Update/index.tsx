@@ -59,9 +59,9 @@ const UpdateUser = () => {
         <input name="password" type="password"></input>
         <button className='button-update' type="submit">Atualizar</button>
       </form>
-
+      <LinkComponent toPage="/listUsuarios" text="Voltar"></LinkComponent>
     </div>
-    <LinkComponent toPage="/listUsuarios" text="Voltar"></LinkComponent></>
+    </>
     
   )
 }
