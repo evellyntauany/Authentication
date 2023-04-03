@@ -6,6 +6,8 @@ const admUserController = require("../controllers/admUserController")
 const User = require('../database/User')
 const connection = require('../database/dataBase')
 
+
+//Listando todos os usuarios clientes do banco 
 router.get("/admin/users", async (req, res) => {
     await User.findAll({
             attributes: ['id', 'name', 'email']
@@ -23,6 +25,7 @@ router.get("/admin/users", async (req, res) => {
 
 });
 
+//Deletando usuarios clientes do banco 
 router.delete("/delete/:id", (req, res) => {
     const {
         id
@@ -34,7 +37,7 @@ router.delete("/delete/:id", (req, res) => {
     });
 });
 
-//Alterar um usuário
+//Alterar um usuário cliente no banco
 router.put('/updateId/:id', async (req, res) => {
     const userId = req.params.id;
 
@@ -67,7 +70,7 @@ router.put('/updateId/:id', async (req, res) => {
     }
 });
 
-//Indo para a pagina do Id user
+//Atualizando informacoes de um id  de usuario cliente especifico 
 router.put("/user/:id", (req, res) => {
     const id = req.params.id;
     console.log("atualizacao do usuario com id ", id)
@@ -81,13 +84,14 @@ router.put("/user/:id", (req, res) => {
 });
 
 
-//Recuperando informacoes de um ID
+//Recuperando informacoes de um ID especificio usuario cliente
 router.get("/search/:id", async (req, res) => {
-    const id = req.params.id;
+    const userId = req.params.id;
     try {
         // Encontre o registro no banco de dados pelo ID
-        const user = await User.findByPk(id);
-    
+        const user = await User.findByPk(userId);
+        console.log("id userrr", userId)
+        console.log("userrrrr", user)
         if (!user) {
           return res.status(404).send({ message: 'Registro não encontrado' });
         }
