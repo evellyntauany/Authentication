@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import LinkComponent from '../../components/Link'
 import { AuthContext } from '../../contexts/Auth/AuthContext'
-import Navbar from '../usuario_adm/Navbar'
+import Navbar from '../usuario_cliente/Navbar'
 import { setupAPIClient } from './../../hooks/useApi'
 import './profile.scss'
 
@@ -11,6 +12,9 @@ const Profile = () => {
   let id = infos.user?.id
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const auth = useContext(AuthContext)
+  
+  const navegate  = useNavigate()
 
   useEffect(() => {
     if (id != undefined) {
@@ -20,6 +24,7 @@ const Profile = () => {
           const data = res.data
           setName(data.user.name)
           setEmail(data.user.email)
+         
         })
         .catch((err) => {
           console.error('ops! ocorreu um erro' + err)
@@ -36,6 +41,7 @@ const Profile = () => {
       })
       .then((response) => {
         console.log(response)
+         navegate('/')
       })
       .catch((error) => {
         console.error(error)

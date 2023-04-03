@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { RequireAuth } from "./contexts/Auth/RequireAuth";
+import { RequireAuthAdm } from "./contexts/CrudUsers/RequireAuthAdm";
 
 import HomeAdm from "./pages/usuario_adm/HomeAdm";
 import ListUsuarios from "./pages/usuario_adm/Crud/ListUsuarios";
@@ -26,8 +27,8 @@ function App() {
         <Route path="/Register" element={<Register/>}/>
         <Route path="/Profile" element={<Profile/>}/>
 
-        <Route path="/logginAdm" element={<PageLogginAdm/>} />
-        <Route path="/admin" element={<HomeAdm></HomeAdm>} />
+        <Route path="/logginAdm" element={<RequireAuthAdm><PageLogginAdm/></RequireAuthAdm>} />
+        <Route path="/admin" element={<RequireAuthAdm><HomeAdm/></RequireAuthAdm>} />
         <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
         <Route path="/RegisterUsers" element={<RegisterUsuario/>}/>
         <Route path="/user/:id" element={<Update/>}/>

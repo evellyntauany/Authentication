@@ -60,7 +60,7 @@ const ListUsuarios = () => {
   return (
     <>
       <Navbar></Navbar>
-      <div className="users">
+      <div className="user">
         <div className="users__div">
           <LinkComponent
             toPage="/RegisterUsers"

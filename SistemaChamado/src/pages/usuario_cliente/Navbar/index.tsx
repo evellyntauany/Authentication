@@ -10,8 +10,6 @@ const Navbar = () => {
     <div className="ContainerNav">
       <LinkComponent toPage="/" text="Home"></LinkComponent>
 
-      <LinkComponent toPage="/Register" text="Registrar"></LinkComponent>
-
       <LinkComponent toPage="/PageLoggin" text="Logar"></LinkComponent>
 
       <LinkComponent toPage="/PageAcess" text="Dashboard"></LinkComponent>

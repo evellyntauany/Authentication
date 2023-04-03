@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import LinkComponent from '../../../../components/Link'
 import { setupAPIClient } from '../../../../hooks/useApi'
+import { useNavigate } from 'react-router-dom';
 
 const UpdateUser = () => {
   const api = setupAPIClient()
   const { id } = useParams()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const navegate = useNavigate()
 
   useEffect(() => {
     api
@@ -31,6 +33,7 @@ const UpdateUser = () => {
       email,
     }) .then((response) => {
       console.log(response)
+      navegate('/listUsuarios')
     })
     .catch((error) => {
       console.error(error)
