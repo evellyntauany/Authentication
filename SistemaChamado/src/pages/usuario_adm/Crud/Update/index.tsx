@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import LinkComponent from '../../../../components/Link'
 import { setupAPIClient } from '../../../../hooks/useApi'
 import { useNavigate } from 'react-router-dom';
+import Navbar from './../../Navbar/index';
 
 const UpdateUser = () => {
   const api = setupAPIClient()
@@ -10,6 +11,7 @@ const UpdateUser = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const navegate = useNavigate()
+  const [error,setError] =useState('')
 
   useEffect(() => {
     api
@@ -26,8 +28,15 @@ const UpdateUser = () => {
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    console.log(name)
-    console.log(email)
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      setError('Por favor, digite um endereço de e-mail válido');
+      return
+    }
+    if (!name || !email ) {
+      setError('Por favor, preencha todos os campos obrigatórios');
+      return
+    }
     await api.put(`/updateId/${id}`, {
       name,
       email,
@@ -41,9 +50,12 @@ const UpdateUser = () => {
          
   }
   return (
-    <><div className="ContainerUpdate">
+    <>
+    <Navbar></Navbar>
+    <div className="ContainerUpdate">
       <h1>Pagina de atualizacao de cadastro</h1>
       <form onSubmit={handleSubmit}>
+        {error}
         <label>Nome:</label>
         <input
           name="name"

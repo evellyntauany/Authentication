@@ -3,7 +3,6 @@ import Navbar from '../../Navbar'
 import { setupAPIClient } from '../../../../hooks/useApi'
 import { Link } from 'react-router-dom'
 import './styleList.scss'
-import RegisterUsuario from '../../RegisterUsuario'
 import LinkComponent from '../../../../components/Link'
 
 interface usersdb {
@@ -30,33 +29,6 @@ const ListUsuarios = () => {
       })
   }, [onDelete])
 
-  const myStateMap = myData.map((item) => {
-    return (
-      <div className="user">
-        <div className="user__each">
-          <li key={item.id}> Id de usuario :{item.id}</li>
-          <li> Nome :{item.name}</li>
-          <li> Email:{item.email}</li>
-        </div>
-        <div className="buttons">
-          <button
-            className="button-delete"
-            role="button"
-            onClick={() => onDelete(item.id)}
-            type="button"
-          >
-            Excluir
-          </button>
-          <button className="button-update" role="button" type="button">
-            <Link className="button-update__link" to={`/user/${item.id}`}>
-              Atualizar
-            </Link>
-          </button>
-        </div>
-      </div>
-    )
-  })
-
   return (
     <>
       <Navbar></Navbar>
@@ -72,8 +44,33 @@ const ListUsuarios = () => {
         </h1>
         <div className="content_link"></div>
 
-        <br></br>
-        <div className="allList">{myStateMap}</div>
+        <ul className='user__ul'>
+          {myData.map((item) => (
+            <><div>
+              <div className="each">
+                <li key={item.id}>{item.name}</li>
+                <li> Nome :{item.name}</li>
+                <li> Email:{item.email}</li>
+              </div>
+              <div className="buttons">
+                <button
+                  className="button-delete"
+                  role="button"
+                  onClick={() => onDelete(item.id)}
+                  type="button"
+                >
+                  Excluir
+                </button>
+                <button className="button-update" role="button" type="button">
+                  <Link className="button-update__link" to={`/user/${item.id}`}>
+                    Atualizar
+                  </Link>
+                </button>
+              </div>
+              </div>
+            </>
+          ))}
+        </ul>
       </div>
     </>
   )
