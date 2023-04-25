@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import LinkComponent from '../../../components/Link'
-import { AuthContext } from '../../../contexts/CrudUsers/AuthContext'
+import { AuthContextUser } from '../../../contexts/CrudUsers/AuthContextUser'
 
 const Navbar = () => {
-  const { userAdm, signout } = useContext(AuthContext)
+  const { userAdm, signout } = useContext(AuthContextUser)
   return (
     <div className="ContainerNav">
       <LinkComponent toPage="/admin" text="Home"></LinkComponent>

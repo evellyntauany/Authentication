@@ -14,6 +14,7 @@ import PageAcess from "./pages/usuario_cliente/PageAcess";
 import PageLoggin from "./pages/PageLoggin";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile/index";
+import Create from "./pages/usuario_cliente/CrudChamado/Create"
 import './AppStyle.css'
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
         <Route path="/RegisterUsers" element={<RegisterUsuario/>}/>
         <Route path="/user/:id" element={<Update/>}/>
+        <Route path="/create/chamado" element={<Create/>}/>
 
         
       </Routes>

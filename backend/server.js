@@ -47,11 +47,13 @@ app.post('/signinAdm', async function (req, res) {
 // Rota de cadastro usuario cliente
 app.post('/cadastrar', async (req, res) => {
   const email = req.body.email;
-
+  console.log("email sendo cadastrado>>",email)
   try {
     // Verificar se o usuário já está registrado
     const user = await User.findOne({ where: { email } });
+    console.log("retorno do banco se ja esta cadastrado>>",user)
     const salt = await bcrypt.genSalt(10);
+    console.log("salt>>",salt)
     if (user) {
       return res.status(409).json({ message: 'Este email já está sendo usado.' });
     } else {
@@ -61,7 +63,7 @@ app.post('/cadastrar', async (req, res) => {
         password: await bcrypt.hash(req.body.password, salt)
       };
       created_user = await User.create(usr);
-      res.status(201).json(created_user);
+      res.status(200).json(created_user);
     }
   } catch (error) {
     console.error(error);
@@ -99,7 +101,7 @@ app.post('/signin', async function (req, res) {
 //Cadastrar user admin
 app.post('/register_admin', async (req, res) => {
   const email = req.body.email;
-
+ 
   try {
     // Verificar se o usuário já está registrado
     const user = await User_admin.findOne({ where: { email } });

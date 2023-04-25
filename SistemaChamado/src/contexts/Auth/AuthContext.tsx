@@ -4,6 +4,7 @@ import { User, UserLogin, UserRegister } from "../../types/User";
 
 export type AuthContextType = {
     user: User | undefined ;
+    error: string | null;
     logando: (usuario:UserLogin)=> Promise<void>;
     signout:() =>void;
     register:(usuario:UserRegister)=>Promise<void>;

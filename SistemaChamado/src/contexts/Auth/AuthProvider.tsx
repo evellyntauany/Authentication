@@ -6,6 +6,7 @@ import { setupAPIClient } from '../../hooks/useApi'
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<User>()
   const api = setupAPIClient()
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user')
@@ -23,6 +24,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         password,
       })
       .then((response) => {
+        if(response.status === 200) {
         const { name, email } = response.data
         const json = JSON.stringify(response.data) //para json
         localStorage.setItem('user', json) //seta no meu localStorage
@@ -30,9 +32,19 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
           name,
           email,
         })
-      })
-      .catch((error) => {
-        alert(error.response.data.message) // Imprime a mensagem de erro retornada pelo servidor
+        setError('')
+        
+      }else{
+        setError("Email ja sendo usado");
+        alert(error);
+      }})
+      .catch((erro) => {
+        if(erro.response.status == 409){
+        setError("Email já cadastrado");
+        }
+        else{
+        setError("erro ao se registrar");
+        }
         return false
       })
   }
@@ -73,7 +85,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, logando, signout, register }}>
+    <AuthContext.Provider value={{error, user, logando, signout, register }}>
       {children}
     </AuthContext.Provider>
   )

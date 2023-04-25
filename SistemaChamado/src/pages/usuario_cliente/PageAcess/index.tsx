@@ -13,6 +13,7 @@ const PageAcess = () => {
         <h1>
           Dashboard
           <p>Bem vindo,  {user.user?.name}</p>
+          <section className="chamado_new"></section>
         </h1>
       </div>
     </>

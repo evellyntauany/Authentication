@@ -1,71 +1,128 @@
-
-import { useState, useEffect, useContext } from 'react';
-import { FormEvent } from 'react';
-import { AuthContext } from '../../../contexts/CrudUsers/AuthContext';
-import { setupAPIClient } from '../../../hooks/useApi';
-import {useNavigate} from 'react-router-dom';
+import { useState, useContext, FormEvent } from 'react'
+import { AuthContextUser } from '../../../contexts/CrudUsers/AuthContextUser'
+import { useNavigate } from 'react-router-dom'
+import ValidationError from '../../../components/validations_error'
+import { AuthContext } from '../../../contexts/Auth/AuthContext'
+import { ValidationEmail } from '../../../helpers/validationEmail'
 import './register.scss'
 
-
 const RegisterUsuario = () => {
-    
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const api = setupAPIClient();
-  const {createUser} = useContext(AuthContext);
-  const navigate = useNavigate();
-  const [error,setError] =useState('')
-  
-  
+  const auth = useContext(AuthContext)
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
+  const { createUser, error } = useContext(AuthContextUser)
+  const navigate = useNavigate()
 
-async function handleSubmituser(e:FormEvent) {
-  console.log("clicando no botao")
-  e.preventDefault()
-  const emailRegex = /\S+@\S+\.\S+/;
-  if (!emailRegex.test(email)) {
-    setError('Por favor, digite um endereço de e-mail válido');
-    return
+  const [form, setForm] = useState({
+    email: {
+      hasChanged: false,
+      value: '',
+    },
+    password: {
+      hasChanged: false,
+      value: '',
+    },
+  })
+
+  async function handleSubmitUser(e: FormEvent) {
+    e.preventDefault()
+    const user = {
+      name,
+      email,
+      password,
+    }
+    createUser(user)
+    if (!error) {
+      return navigate('/listUsuarios')
+    }
   }
-  if (!name || !email || !password ) {
-    setError('Por favor, preencha todos os campos obrigatórios');
-    return
-  }
-  const user ={
-    name,
-    email,
-    password,
-  }
-  createUser(user)
-  return navigate('/listUsuarios')
-}
+
   return (
-    
     <div className="Container">
       <div className="FormCont">
-      <h1>Pagina de registro de usuario funcionario</h1>
-      <form className="formRegister" onSubmit={handleSubmituser}>
-      {error}
-      <div>
-     
-          <label>Nome:</label>
-          <input name="name" type="text" onChange={e=>setName(e.target.value)}/>
-        </div>
-        <div>
-          <label>Email:</label>
-          <input name="email" type="email" onChange={e=>setEmail(e.target.value)}/>
-        </div>
-        <div>
-          <label>Senha:</label>
-          <input name="password" type="password" onChange={e=>setPassword(e.target.value)}></input>
-        </div>
-          <button className="btn-reg"
-          type="submit"
-          >Registrar</button>
+        {error ? <p className="error_class">{error}</p> : ''}
+        <h1>Register sistema</h1>
 
-      </form>
+        <form className="formRegister" onSubmit={handleSubmitUser}>
+          <div>
+            <label>Nome:</label>
+            <input
+              name="name"
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <label>Email:</label>
+          <input
+            name="email"
+            type="email"
+            onChange={(e) => {
+              setEmail(e.target.value)
+              setForm({
+                ...form,
+                email: {
+                  hasChanged: true,
+                  value: e.target.value,
+                },
+              })
+            }}
+          />
+          <ValidationError
+            hasChanged={form.email.hasChanged}
+            errorMessage="Email é obrigatório"
+            testId="email-required"
+            type="required"
+            value={form.email.value}
+          />
+
+          <ValidationError
+            hasChanged={form.email.hasChanged}
+            errorMessage="Email é inválido"
+            testId="email-invalid"
+            type="email"
+            value={form.email.value}
+          />
+
+          <div>
+            <label>Senha:</label>
+            <input
+              name="password"
+              type="password"
+              onChange={(e) => {
+                setPassword(e.target.value)
+                setForm({
+                  ...form,
+                  password: {
+                    hasChanged: true,
+                    value: e.target.value,
+                  },
+                })
+              }}
+              data-testid="password"
+            />
+            <ValidationError
+              hasChanged={form.password.hasChanged}
+              errorMessage="Senha é obrigatória"
+              testId="password-required"
+              type="required"
+              value={form.password.value}
+            />
+          </div>
+
+          <button
+            className="btn-reg"
+            disabled={
+              !ValidationEmail(form.email.value) || !form.password.value
+            }
+            type="submit"
+          >
+            Registrar
+          </button>
+        </form>
       </div>
-      </div>
-  );
-};
-export default RegisterUsuario;
+    </div>
+  )
+}
+export default RegisterUsuario

@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useContext, useState } from 'react'
-import { AuthContext } from '../../../contexts/CrudUsers/AuthContext'
+import { AuthContextUser } from '../../../contexts/CrudUsers/AuthContextUser'
 import './stylesLoginAdm.css'
 
 const PageLogginAdm = () => {
-  const { logandoAdm } = useContext(AuthContext)
+  const { logandoAdm } = useContext(AuthContextUser)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

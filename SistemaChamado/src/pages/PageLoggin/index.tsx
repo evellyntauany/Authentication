@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import LinkComponent from '../../components/Link'
 import { AuthContext } from '../../contexts/Auth/AuthContext'
 import './stylesLogin.css'
 
@@ -13,6 +14,8 @@ const PageLoggin = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+   
+
     const usuario = {
       email,
       password,
@@ -24,7 +27,7 @@ const PageLoggin = () => {
   }
 
   return (
-    <div className="Container">
+    <div className="ContainerRegister">
       <div className="FormCont">
         <h1>Login sistema</h1>
         <form className="formRegister" onSubmit={handleSubmit}>
@@ -45,6 +48,8 @@ const PageLoggin = () => {
             </button>
           </div>
         </form>
+
+        <LinkComponent toPage="/Register" text="Registrar-se"></LinkComponent>
       </div>
     </div>
   )

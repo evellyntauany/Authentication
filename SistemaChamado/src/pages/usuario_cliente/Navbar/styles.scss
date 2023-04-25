@@ -1,0 +1,52 @@
+.Container {
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    justify-content: start;
+    align-items: center;
+    border-bottom: solid #21212262 1px;
+    margin-bottom: 3rem;
+
+    &__linksBtn{
+        display: flex;
+        justify-content: space-between;
+    }
+    &__btns{
+        display: flex;
+        align-items: center;
+    }
+   &__logo{
+    
+   }
+   &__links{ 
+        display: flex;
+        align-items: center;
+        a{
+            padding: 10px;
+            color: #222223;
+            text-decoration:none;
+            font-size: 20px;
+        }
+   }
+}
+
+.ContainerNav a {
+    margin: 0 1rem;
+    text-decoration: none;
+    font-size: 22px;
+    color: #48626f;
+}
+
+.btn {
+    
+  
+    color: #212122;
+    &__Singnout{
+        
+    }
+}
+
+.logo {
+    background-image: url(../../../assets/logo.png)
+}

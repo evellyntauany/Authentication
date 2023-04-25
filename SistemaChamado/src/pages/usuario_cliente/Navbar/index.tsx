@@ -1,30 +1,46 @@
 import { useContext } from 'react'
 import LinkComponent from '../../../components/Link'
 
+
 import { AuthContext } from '../../../contexts/Auth/AuthContext'
-import './styles.css'
+import './styles.scss'
+const logo = require('../../../assets/logoSemFund.png')
+
 
 const Navbar = () => {
   const { signout, user } = useContext(AuthContext)
   return (
-    <div className="ContainerNav">
-      <LinkComponent toPage="/" text="Home"></LinkComponent>
+    <div className="Container">
+      <div className="Container__logo">
+        <img height={80} src={logo}></img>
+      </div>
+      <div className="Container__linksBtn">
+        <div className="Container__links">
+          <LinkComponent toPage="/" text="Inicio"></LinkComponent>
 
-      <LinkComponent toPage="/PageLoggin" text="Logar"></LinkComponent>
+          <LinkComponent toPage="/PageAcess" text="Dashboard"></LinkComponent>
+          </div>
 
-      <LinkComponent toPage="/PageAcess" text="Dashboard"></LinkComponent>
+          <div className='Container__btns'>
+          {user ? (
+            <>
+              <LinkComponent toPage="/Profile" text="Perfil"></LinkComponent>
 
-      {user ? (
-        <>
-          <LinkComponent toPage="/Profile" text="Perfil"></LinkComponent>
-          <button className="btnSingnout" onClick={() => signout()}>
-            {' '}
-            Sair
-          </button>
-        </>
-      ) : (
-        ''
-      )}
+              <div className="btn">
+                
+                <button className="btn__Singnout" onClick={() => signout()}>
+
+                  {' '}
+                  Sair
+                </button>
+              </div>
+            </>
+          ) : (
+            <LinkComponent toPage="/PageLoggin" text="Logar"></LinkComponent>
+          )}
+          </div>
+       
+      </div>
     </div>
   )
 }

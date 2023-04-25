@@ -15,6 +15,8 @@ const ListUsuarios = () => {
   const api = setupAPIClient()
   const [myData, setMyData] = useState<usersdb[]>([])
 
+
+
   const onDelete = (id: number) => {
     console.log(id)
     api.delete(`/delete/${id}`)
@@ -45,6 +47,7 @@ const ListUsuarios = () => {
         <div className="content_link"></div>
 
         <ul className='user__ul'>
+
           {myData.map((item) => (
             <><div>
               <div className="each">
@@ -68,8 +71,12 @@ const ListUsuarios = () => {
                 </button>
               </div>
               </div>
+              
             </>
+
+            
           ))}
+  
         </ul>
       </div>
     </>
