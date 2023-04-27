@@ -4,14 +4,12 @@ import { RequireAuthAdm } from "./contexts/CrudUsers/RequireAuthAdm";
 
 import HomeAdm from "./pages/usuario_adm/HomeAdm";
 import ListUsuarios from "./pages/usuario_adm/Crud/ListUsuarios";
-import PageLogginAdm from "./pages/usuario_adm/PageLogginAdm";
-import RegisterUsuario from "./pages/usuario_adm/RegisterUsuario";
 import Update from "./pages/usuario_adm/Crud/Update";
 
 import Home from "./pages/Home";
 import Navbar from "./pages/usuario_cliente/Navbar";
 import PageAcess from "./pages/usuario_cliente/PageAcess";
-import PageLoggin from "./pages/PageLoggin";
+import Loggin from "./pages/Loggin";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile/index";
 import Create from "./pages/usuario_cliente/CrudChamado/Create"
@@ -21,22 +19,23 @@ import './AppStyle.css'
 
 function App() {
   return (
+    <>
+    <Navbar />
     <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/PageLoggin" element={<RequireAuth><PageAcess/></RequireAuth>} />
-        <Route path="PageAcess" element={<RequireAuth><PageAcess/></RequireAuth>} />
-        <Route path="/Register" element={<Register/>}/>
-        <Route path="/Profile" element={<Profile/>}/>
 
-        <Route path="/logginAdm" element={<RequireAuthAdm><PageLogginAdm/></RequireAuthAdm>} />
-        <Route path="/admin" element={<RequireAuthAdm><HomeAdm/></RequireAuthAdm>} />
-        <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
-        <Route path="/RegisterUsers" element={<RegisterUsuario/>}/>
-        <Route path="/user/:id" element={<Update/>}/>
-        <Route path="/create/chamado" element={<Create/>}/>
+      <Route path="/" element={<Home />} />
+      <Route path="/Login" element={<RequireAuth><PageAcess /></RequireAuth>} />
+      <Route path="PageAcess" element={<RequireAuth><PageAcess /></RequireAuth>} />
+      <Route path="/Register" element={<Register />} />
+      <Route path="/Profile" element={<Profile />} />
 
-        
-      </Routes>
+      <Route path="/admin" element={<HomeAdm />} />
+      <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
+      <Route path="/user/:id" element={<Update />} />
+      <Route path="/create/chamado" element={<Create />} />
+
+
+    </Routes></>
   );
 }
 

@@ -74,7 +74,7 @@ const UpdateUser = () => {
         <input name="password" type="password"></input>
         <button className='button-update' type="submit">Atualizar</button>
       </form>
-      <LinkComponent toPage="/listUsuarios" text="Voltar"></LinkComponent>
+      <LinkComponent toPage="/listUsuarios" children="Voltar"></LinkComponent>
     </div>
     </>
     

@@ -1,6 +1,5 @@
 import { AuthContext } from '../../../contexts/Auth/AuthContext'
 import { useContext } from 'react'
-import Navbar from '../../usuario_cliente/Navbar'
 import './access.scss'
 
 const PageAcess = () => {
@@ -8,7 +7,6 @@ const PageAcess = () => {
 
   return (
     <>
-      <Navbar></Navbar>
       <div className="dashboard">
         <h1>
           Dashboard

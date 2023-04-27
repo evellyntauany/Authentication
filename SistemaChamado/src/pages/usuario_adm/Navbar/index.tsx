@@ -6,12 +6,12 @@ const Navbar = () => {
   const { userAdm, signout } = useContext(AuthContextUser)
   return (
     <div className="ContainerNav">
-      <LinkComponent toPage="/admin" text="Home"></LinkComponent>
+      <LinkComponent toPage="/admin" children="Home"></LinkComponent>
 
 
     
       {!userAdm ? (
-      <LinkComponent toPage="/logginAdm" text="Login"></LinkComponent>
+      <LinkComponent toPage="/logginAdm" children="Login"></LinkComponent>
       ) : (
         ''
       )}

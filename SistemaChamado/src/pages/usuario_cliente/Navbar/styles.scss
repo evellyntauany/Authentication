@@ -2,7 +2,7 @@
     padding: 0.5rem 1rem;
     background-color: #fff;
     display: grid;
-    grid-template-columns: 15% 85%;
+    grid-template-columns: 12% 88%;
     justify-content: start;
     align-items: center;
     border-bottom: solid #21212262 1px;
@@ -31,6 +31,10 @@
    }
 }
 
+.Logo_img{
+    width:100%;
+}
+
 .ContainerNav a {
     margin: 0 1rem;
     text-decoration: none;
@@ -38,15 +42,16 @@
     color: #48626f;
 }
 
-.btn {
-    
-  
-    color: #212122;
-    &__Singnout{
-        
-    }
+.btn_signout{
+   
 }
 
+.App-logo, .icon_signout{
+    width: 2rem;
+    height: 1.5rem;
+    color: black;
+    cursor: pointer;
+}
 .logo {
     background-image: url(../../../assets/logo.png)
 }

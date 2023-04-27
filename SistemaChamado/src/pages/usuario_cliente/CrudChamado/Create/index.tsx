@@ -1,28 +1,46 @@
 import { FormEvent } from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../../../contexts/Auth/AuthContext";
+import { CalledContext } from "../../../../contexts/CrudChamado/CalledContext";
+import { AuthProviderCalled } from './../../../../contexts/CrudChamado/AuthProviderCalled';
+import { setupAPIClient } from './../../../../hooks/useApi';
 
-function ChamadoFormulario() {
-  const [titulo, setTitulo] = useState("");
-  const [descricao, setDescricao] = useState("");
 
-  const handleSubmit = (e: FormEvent) => {
+
+
+const ChamadoFormulario=()=> {
+  const called = useContext(CalledContext)
+  const api = setupAPIClient()
+  const [description, setDescription] = useState('');
+  const auth = useContext(AuthContext);
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     // Lógica para submeter o chamado para o sistema de tickets
-    console.log("Título do chamado: ", titulo);
-    console.log("Descrição do chamado: ", descricao);
+    console.log("Descrição do chamado: ", description);
+   const id = auth.user?.id
+   console.log("id user>",id)
+    await api
+    .post('/chamados', {
+      description
+    })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+   
   };
 
   return (
     <form onSubmit={handleSubmit}>
         <h2> Formulario de criacao de chamado</h2>
       <label>
-        Título:
-        <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
-      </label>
-      <label>
         Descrição:
-        <textarea value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
       </label>
+      
       <button type="submit">Enviar</button>
     </form>
   );

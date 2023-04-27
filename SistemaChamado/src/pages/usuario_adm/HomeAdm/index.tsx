@@ -14,7 +14,7 @@ const Home = () => {
             <div className="content_button">
               <LinkComponent
                 toPage="/listUsuarios"
-                text="Acessar funcionarios cadastrados no sistema"
+                children="Acessar funcionarios cadastrados no sistema"
               ></LinkComponent>
             </div>
           </section>
@@ -22,7 +22,7 @@ const Home = () => {
             <div className="content_button">
             <LinkComponent
                 toPage="/#"
-                text="Acessar clientes cadastrados no sistema"
+                children="Acessar clientes cadastrados no sistema"
               ></LinkComponent>
             </div>
           </section>

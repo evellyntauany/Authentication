@@ -16,6 +16,9 @@ const User = require('./server/database/User');
 //ADM
 const User_admin = require('./server/database/User_admin');
 
+const service_order = require('./server/database/Service_order');
+
+
 //Login de usuario adm 
 app.post('/signinAdm', async function (req, res) {
   const emaila = req.body.email;
@@ -80,9 +83,9 @@ app.post('/signin', async function (req, res) {
   console.log(">>senha",password)
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email });  //Problema aqui: o user esta trazendo todos os registros do banco entao ele loga achando que existe o email no banco
     console.log("se encontrou o user>>", user)
-    if (!user) {
+    if (!user) { 
       return res.status(400).send("Não localizamos o name!");
     }
 

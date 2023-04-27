@@ -23,13 +23,12 @@ const ListUsuarios = () => {
   }
 
   useEffect(() => {
-    api
-      .get('/admin/users')
+    api.get('/admin/users')
       .then((response) => setMyData(response.data.data))
       .catch((err) => {
         console.error('ops! ocorreu um erro' + err)
       })
-  }, [onDelete])
+  }, [])
 
   return (
     <>
@@ -37,8 +36,8 @@ const ListUsuarios = () => {
       <div className="user">
         <div className="users__div">
           <LinkComponent
-            toPage="/RegisterUsers"
-            text="Registrar novo usuario no sistema"
+            toPage="/Register"
+            children="Registrar novo usuario no sistema"
           ></LinkComponent>
         </div>
         <h1 className="content_link__h1">
@@ -48,13 +47,13 @@ const ListUsuarios = () => {
 
         <ul className='user__ul'>
 
-          {myData.map((item) => (
+          {myData.map((item,i) => (
             <><div>
-              <div className="each">
-                <li key={item.id}>{item.name}</li>
+              <ul className="each">
+                <li key={i}>{item.name}</li>
                 <li> Nome :{item.name}</li>
                 <li> Email:{item.email}</li>
-              </div>
+              </ul>
               <div className="buttons">
                 <button
                   className="button-delete"

@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<User>()
   const api = setupAPIClient()
   const [error, setError] = useState('');
+  const [sucess, setSucess] = useState('');
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user')
@@ -17,6 +18,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   }, [setUser])
 
   async function register({ name, email, password }: UserRegister) {
+    
     await api
       .post('/cadastrar', {
         name,
@@ -33,12 +35,11 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
           email,
         })
         setError('')
+        setSucess("Cadastro efetuado com sucesso")
         
-      }else{
-        setError("Email ja sendo usado");
-        alert(error);
-      }})
+  }})
       .catch((erro) => {
+        setSucess('')
         if(erro.response.status == 409){
         setError("Email já cadastrado");
         }
@@ -85,7 +86,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   }
 
   return (
-    <AuthContext.Provider value={{error, user, logando, signout, register }}>
+    <AuthContext.Provider value={{error, sucess, user, logando, signout, register }}>
       {children}
     </AuthContext.Provider>
   )

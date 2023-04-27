@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../server/database/dataBase');
-const Service_order = require('../server/database/Service_order');
+const Service_order = require('../database/Service_order');
 
 //Cria chamado
 router.post('/chamados', async (req, res) => {

@@ -75,7 +75,7 @@ const Profile = () => {
           <button className='button-update' type="submit">Atualizar</button>
         </form>
       </div>
-      <LinkComponent toPage="/" text="Voltar"></LinkComponent>
+      <LinkComponent toPage="/" children="Voltar"></LinkComponent>
     </>
   )
 }

@@ -1,4 +1,6 @@
 import { ValidationEmail } from "../../helpers/validationEmail";
+import './error.scss'
+
 
 type ValidationErrorProps = {
     errorMessage: string;
