@@ -13,7 +13,6 @@ import Loggin from "./pages/Loggin";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile/index";
 import Create from "./pages/usuario_cliente/CrudChamado/Create"
-import './AppStyle.css'
 
 
 
@@ -27,7 +26,7 @@ function App() {
       <Route path="/Login" element={<RequireAuth><PageAcess /></RequireAuth>} />
       <Route path="PageAcess" element={<RequireAuth><PageAcess /></RequireAuth>} />
       <Route path="/Register" element={<Register />} />
-      <Route path="/Profile" element={<Profile />} />
+      <Route path="/Profile" element={<RequireAuth><Profile/></RequireAuth>} />
 
       <Route path="/admin" element={<HomeAdm />} />
       <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />

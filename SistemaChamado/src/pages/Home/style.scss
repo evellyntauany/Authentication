@@ -39,6 +39,10 @@
     justify-content: center;
    
 }
+
+.card_create{
+  margin-top: 1rem;
+}
    
   .row {
     display: flex;
@@ -54,4 +58,13 @@
   .card p {
     color: #a3a5ae;
     font-size: 16px;
+  }
+
+  .link__called{
+    text-decoration: none;
+    section{
+      color: #000;
+      font-size: 22px;
+      font-weight: bold;
+    }
   }

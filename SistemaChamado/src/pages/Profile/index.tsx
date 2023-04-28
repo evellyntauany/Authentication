@@ -13,8 +13,8 @@ const Profile = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const auth = useContext(AuthContext)
-  
-  const navegate  = useNavigate()
+
+  const navegate = useNavigate()
 
   useEffect(() => {
     if (id != undefined) {
@@ -24,7 +24,6 @@ const Profile = () => {
           const data = res.data
           setName(data.user.name)
           setEmail(data.user.email)
-         
         })
         .catch((err) => {
           console.error('ops! ocorreu um erro' + err)
@@ -41,7 +40,7 @@ const Profile = () => {
       })
       .then((response) => {
         console.log(response)
-         navegate('/')
+        navegate('/')
       })
       .catch((error) => {
         console.error(error)
@@ -50,32 +49,47 @@ const Profile = () => {
 
   return (
     <>
-    <Navbar></Navbar>
       <div className="ContainerUpdate">
-        <h1>Atualizar cadastro</h1>
+        <h1>Minha conta</h1>
         <form onSubmit={handleSubmit}>
-          <label>Nome:</label>
-          <input
-            name="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <label className="profile__label">
+            <section>Nome:</section>
+            <input
+              required
+              className="profile__input"
+              name="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+          <label className="profile__label">
+            <section>Email:</section>
+            <input
+              required
+              className="profile__input"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+          <label className="profile__label">
+            <section>Nova senha:</section>
+            <input
+              className="profile__input"
+              name="password"
+              type="password"
+            ></input>
+          </label>
 
-          <label>Email:</label>
-          <input
-            name="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <label>Nova senha:</label>
-          <input name="password" type="password"></input>
-          <button className='button-update' type="submit">Atualizar</button>
+          <button className="btn__update_profile" type="submit">
+            Salvar
+          </button>
         </form>
+        <LinkComponent toPage="/" children="Voltar"></LinkComponent>
       </div>
-      <LinkComponent toPage="/" children="Voltar"></LinkComponent>
+     
     </>
   )
 }

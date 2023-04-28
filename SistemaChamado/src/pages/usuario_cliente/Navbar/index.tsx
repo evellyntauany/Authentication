@@ -16,9 +16,7 @@ const Navbar = () => {
       </div>
       <div className="Container__linksBtn">
         <div className="Container__links">
-          <LinkComponent toPage="/" children="Inicio"></LinkComponent>
-
-          <LinkComponent toPage="/PageAcess" children="Dashboard"></LinkComponent>
+          <LinkComponent toPage="/"  children="Home"></LinkComponent>         
           </div>
 
           <div className='Container__btns'>
@@ -31,7 +29,11 @@ const Navbar = () => {
               </div>
             </>
           ) : (
-            <LinkComponent toPage="/Login" children="Logar"></LinkComponent>
+       
+            <LinkComponent className="btn_signin" toPage="/Login">
+              <span className="btn_signin__span">Entrar</span>
+              <span>Registrar</span>
+            </LinkComponent>
           )}
           </div>
        

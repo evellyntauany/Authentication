@@ -14,6 +14,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser) //Para string
       setUser(foundUser)
+    }else{
+      setUser(undefined)
     }
   }, [setUser])
 

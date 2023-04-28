@@ -35,7 +35,7 @@ const ChamadoFormulario=()=> {
 
   return (
     <form onSubmit={handleSubmit}>
-        <h2> Formulario de criacao de chamado</h2>
+        <h2> Abertura de chamado</h2>
       <label>
         Descrição:
         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
