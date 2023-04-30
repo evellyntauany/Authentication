@@ -1,7 +1,7 @@
 import './style.scss'
 import Navbar from '../usuario_cliente/Navbar/index'
 import LinkComponent from '../../components/Link'
-import { FaClipboardList } from 'react-icons/fa'
+import { FaBook, FaClipboardList } from 'react-icons/fa'
 import { AuthContext } from '../../contexts/Auth/AuthContext'
 import { useContext } from 'react'
 
@@ -28,9 +28,9 @@ const Home = () => {
           </div>
 
           <div className="card red">
-            <h2>Artigos</h2>
+            <section>Artigos <FaBook/></section>
             <p>Acesse artigos</p>
-            <img className="image" alt="article" />
+            
           </div>
 
           <LinkComponent className="link__called" toPage="/create/chamado">

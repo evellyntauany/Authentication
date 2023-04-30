@@ -128,20 +128,6 @@ app.post('/register_admin', async (req, res) => {
 
 
 
-
-
-// Rota para renderizar a página com a tabela
-app.get('/table', async (req, res) => {
-  try {
-    const users = await User.findAll();
-    res.render('users', { users });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao recuperar usuários' });
-  }
-});
-
-
 app.listen(3006, () => {
   console.log("Servidor inciado na porta 3006");
 });

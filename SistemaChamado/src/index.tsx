@@ -7,7 +7,7 @@ import { AuthProviderAdm } from "./contexts/CrudUsers/AuthProviderAdm";
 import './AppStyle.scss'
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Archivo&family=Dosis:wght@300;500;600&family=Fira+Sans+Condensed:wght@300&family=Montserrat+Alternates&family=Quicksand&family=Roboto&display=swap');
 </style>
 
 

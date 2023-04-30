@@ -4,7 +4,7 @@ import { FaSignOutAlt, FaUser } from "react-icons/fa";
 
 import { AuthContext } from '../../../contexts/Auth/AuthContext'
 import './styles.scss'
-const logo = require('../../../assets/logoSemFund.png')
+const logo = require('../../../assets/logoNova1.png')
 
 
 const Navbar = () => {
@@ -14,7 +14,7 @@ const Navbar = () => {
       <div className="Container__logo">
         <img className='Logo_img' height={80}  src={logo}></img>
       </div>
-      <div className="Container__linksBtn">
+     
         <div className="Container__links">
           <LinkComponent toPage="/"  children="Home"></LinkComponent>         
           </div>
@@ -30,14 +30,19 @@ const Navbar = () => {
             </>
           ) : (
        
-            <LinkComponent className="btn_signin" toPage="/Login">
-              <span className="btn_signin__span">Entrar</span>
-              <span>Registrar</span>
+            <div className="btns_nav">
+            <LinkComponent className="btns_nav__signin" toPage="/Login">
+              <span className="btns_nav__span"><FaUser className='btns_nav__user'/> Entrar</span>
             </LinkComponent>
+
+            <LinkComponent className="btns_nav__register" toPage="/Register">
+              <span className="btns_nav__register__new">Criar conta</span>
+            </LinkComponent>
+           </div>
           )}
           </div>
        
-      </div>
+      
     </div>
   )
 }
