@@ -1,0 +1,114 @@
+.Container {
+    padding: 0.5rem 3rem;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 15% 65% 20%;
+    justify-content: start;
+    align-items: center;
+    background-color: #000000e3;
+    ;
+
+    &__linksBtn {
+        display: flex;
+        justify-content: space-between;
+        margin-left: 1.5rem;
+    }
+
+    &__btns {
+        display: flex;
+        align-items: center;
+    }
+
+    &__links {
+        display: flex;
+        align-items: center;
+        margin: 0 2rem;
+        justify-content: start;
+        
+
+        a {
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 300;
+
+            &:hover {
+                border-bottom: 2px solid #0f8b85;
+            }
+        }
+
+    }
+}
+
+.Logo_img {
+    width: 100%;
+}
+
+.ContainerNav a {
+    margin: 0 1rem;
+    text-decoration: none;
+    font-size: 22px;
+    color: #48626f;
+}
+
+.App-logo,
+.icon_signout {
+    width: 2rem;
+    height: 1.5rem;
+    color: #0f8b85;
+    cursor: pointer;
+}
+
+.logo {
+    background-image: url(../../../assets/logo.png)
+}
+
+.btns_nav {
+    display: flex;
+    gap: 32px;
+
+    &__register {
+        width: 100%;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 19px;
+        text-align: center;
+        border: 1px;
+        border-style: solid;
+        border-radius: 5px;
+        border-color: #0f8b85;
+        color: #fff;
+        max-height: 38px;
+        min-width: 110px;
+        white-space: nowrap;
+
+        &:hover {
+            background: #0f8b85;
+        }
+
+        &__new {
+            padding: 8px 15px;
+            height: 100%;
+        }
+    }
+    span{
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+    &__user{
+        color: #0f8b85;
+    }
+    &__signin{
+        display: flex;
+    }
+
+    &__span {
+        flex-direction: row;
+        gap: 5px;
+        color: #fff;
+    }
+}

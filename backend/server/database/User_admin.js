@@ -20,6 +20,11 @@ const User_admin = db.define('users_admin', {
     password:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    isAdmin: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     }
 });
 

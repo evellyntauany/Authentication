@@ -1,0 +1,70 @@
+*{
+    font-family: 'Dosis', sans-serif;
+}
+
+.hero_home{
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-image: url(https://offsetcode.com/themes/boomerang/1.3/assets/images/module-2.jpg);
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+    margin-top: 0px;
+    background-position: 50% 50%;
+}
+
+.new_chamado{
+
+}
+
+
+.card {
+  border-radius: 5px;
+  box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+  padding: 30px;
+  margin: 20px;
+  width: 400px;
+  transition: all 0.3s ease-out;
+}
+
+.collum{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+
+.card_create{
+  margin-top: 1rem;
+}
+   
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+  }
+   
+  .card p {
+    color: #a3a5ae;
+    font-size: 16px;
+  }
+
+  .link__called{
+    text-decoration: none;
+    section{
+      color: #000;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }

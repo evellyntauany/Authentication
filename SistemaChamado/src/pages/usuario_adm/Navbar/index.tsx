@@ -1,27 +1,31 @@
-import { useContext } from "react"
-import LinkComponent from "../../../components/Link"
-import { AuthContext } from "../../../contexts/Auth/AuthContext"
+import { useContext } from 'react'
+import LinkComponent from '../../../components/Link'
+import { AuthContextUser } from '../../../contexts/CrudUsers/AuthContextUser'
+
+const Navbar = () => {
+  const { userAdm, signout } = useContext(AuthContextUser)
+  return (
+    <div className="ContainerNav">
+      <LinkComponent toPage="/admin" children="Home"></LinkComponent>
 
 
-const Navbar =()=>{
-    const {user,signout} = useContext(AuthContext)   
-    return(
-
-       <div className="ContainerNav">
-        <LinkComponent
-            toPage="/admin"
-            text="Home"
-       ></LinkComponent>
-
-       
-
-        <LinkComponent
-            toPage="/logginAdm"
-            text="Login"
-       ></LinkComponent>
     
-        </div>
-    )
-
+      {!userAdm ? (
+      <LinkComponent toPage="/logginAdm" children="Login"></LinkComponent>
+      ) : (
+        ''
+      )}
+      {userAdm ? (
+        <>
+          <button className="btnSingnout" onClick={() => signout()}>
+            {' '}
+            Sair
+          </button>
+        </>
+      ) : (
+        ''
+      )}
+    </div>
+  )
 }
 export default Navbar

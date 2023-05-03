@@ -1,14 +1,20 @@
+import { AuthContext } from '../../../contexts/Auth/AuthContext'
+import { useContext } from 'react'
+import './access.scss'
 
-import { AuthContext } from "../../../contexts/Auth/AuthContext";
-import { useContext } from 'react';
+const PageAcess = () => {
+  const user = useContext(AuthContext)
 
-const PageAcess=() =>{
-    
-   const user = useContext(AuthContext)
-
-    return(<h1>
-       Dashboard, Bem vindo {user.user?.name}
-    </h1>)
-
+  return (
+    <>
+      <div className="dashboard">
+        <h1>
+          Dashboard
+          <p>Bem vindo,  {user.user?.name}</p>
+          <section className="chamado_new"></section>
+        </h1>
+      </div>
+    </>
+  )
 }
 export default PageAcess

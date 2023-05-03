@@ -5,6 +5,7 @@ export type UserRegister ={
     password?:string;
 }
 export type User ={
+    id?:number;
     name:string;
     email:string;
 }
