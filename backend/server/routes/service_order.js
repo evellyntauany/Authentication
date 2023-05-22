@@ -5,8 +5,10 @@ const Service_order = require('../database/Service_order');
 //Cria chamado
 router.post('/chamados', async (req, res) => {
   try {
-    const service_order = await Service_order.create(req.body);
-    return res.status(201).json({ service_order });
+    console.log(req.body)
+    const { description, userId } = req.body;
+    const post = await Service_order.create({ description, UserId: userId });
+    res.json(post);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'Erro ao criar um chamado.' });
@@ -25,11 +27,19 @@ router.get('/chamados', async (req, res) => {
 });
 
 //Le os chamados por ID
-router.get('/chamados/:id', async (req, res) => {
+router.get('/chamadoId/:id', async (req, res) => {
+  const userId = req.params.id;
+  console.log(userId);
   try {
-    const service_order = await Service_order.findByPk(req.params.id);
-    if (!service_order) return res.status(404).json({ error: 'Chamado não encontrado.' });
-    return res.json({ service_order });
+   
+    const service_order = await Service_order.findAll({ where: { UserId: userId } });
+    console.log("Chamadossss>>>>>",service_order)
+    if (!service_order) {
+    return res.status(404).json({ error: 'Chamado não encontrado.' });
+    }
+    if(service_order){
+    return res.json(service_order);
+    }
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'Erro ao buscar o chamado.' });
@@ -37,7 +47,7 @@ router.get('/chamados/:id', async (req, res) => {
 });
 
 //Atualiza chamado por ID
-router.put('/chamados/:id', async (req, res) => {
+router.put('/atualizaChamado/:id', async (req, res) => {
   try {
     const service_order = await Service_order.findByPk(req.params.id);
     if (!service_order) return res.status(404).json({ error: 'Chamado não encontrado.' });
@@ -50,7 +60,7 @@ router.put('/chamados/:id', async (req, res) => {
 });
 
 //Deleta chamado por ID
-router.delete('/chamados/:id', async (req, res) => {
+router.delete('/deleteChamado/:id', async (req, res) => {
   try {
     const service_order = await Service_order.findByPk(req.params.id);
     if (!service_order) return res.status(404).json({ error: 'Chamado não encontrado.' });

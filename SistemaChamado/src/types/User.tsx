@@ -1,11 +1,11 @@
 export type UserRegister ={
-    id?:number;
+    userId?:number;
     name:string;
     email:string;
     password?:string;
 }
 export type User ={
-    id?:number;
+    userId?:number;
     name:string;
     email:string;
 }

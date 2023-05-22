@@ -7,7 +7,7 @@ import LinkComponent from '../../../../components/Link'
 import { FaRegTrashAlt } from 'react-icons/fa'
 
 interface usersdb {
-  id: number
+  userId : number
   name: string
   email: string
 }
@@ -47,7 +47,7 @@ const ListUsuarios = () => {
       .catch((err) => {
         console.error('ops! ocorreu um erro' + err)
       })
-  }, [])
+  }, [api])
 
   return (
     <>
@@ -80,7 +80,7 @@ const ListUsuarios = () => {
             {listaExibida.map((item) => (
               <>
               <tr>
-                <td key={item.id}>{item.id}</td>
+                <td key={item.userId }>{item.userId }</td>
                 <td >{item.name}</td>
                 <td>{item.email}</td>
                 <td>
@@ -88,7 +88,7 @@ const ListUsuarios = () => {
                   <button
                     className="button-delete"
                     role="button"
-                    onClick={() => onDelete(item.id)}
+                    onClick={() => onDelete(item.userId )}
                     type="button"
                   >
                   <FaRegTrashAlt/>
@@ -96,7 +96,7 @@ const ListUsuarios = () => {
                   <button className="button-update" role="button" type="button">
                     <Link
                       className="button-update__link"
-                      to={`/user/${item.id}`}
+                      to={`/user/${item.userId }`}
                     >
                       Atualizar
                     </Link>

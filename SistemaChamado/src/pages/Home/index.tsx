@@ -20,12 +20,15 @@ const Home = () => {
           <p>O que podemos ajudar?</p>
         </section>
         <div className="row">
-          <div className="card blue">
-            <h2>Meus chamados</h2>
-            <FaClipboardList />
-            <p>Verificar chamados abertos</p>
-            <img className="image" alt="settings" />
-          </div>
+        <LinkComponent className="link__called" toPage="/chamados">
+        <div className="card red">
+              <section>
+                {' '}
+                Meus chamados <FaClipboardList />
+              </section>
+              <p>Acessar meus chamados</p>
+            </div>
+          </LinkComponent>
 
           <div className="card red">
             <section>Artigos <FaBook/></section>

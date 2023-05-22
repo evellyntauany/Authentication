@@ -24,11 +24,11 @@ export const AuthProviderAdm = ({ children }: { children: JSX.Element }) => {
       })
       .then((response) => {
         const { name, email } = response.data
-        const { id } = response.data.id
+        const { userId } = response.data.userId
         const json = JSON.stringify(response.data)
         localStorage.setItem('userAdm', json)
         setUserAdm({
-          id,
+          userId,
           name,
           email,
         })

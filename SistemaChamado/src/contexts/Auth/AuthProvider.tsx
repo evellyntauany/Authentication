@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const loggedInUser = localStorage.getItem('user')
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser) //Para string
+      console.log(foundUser)
       setUser(foundUser)
     }else{
       setUser(undefined)
@@ -60,13 +61,13 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
       })
       .then((response) => {
         const { name, email } = response.data
-        const {id} = response.data.id
+        const {userId} = response.data.userId
         console.log("dados usuario>>",response.data)
-        console.log("dados usuario id>>",response.data.id)
+        console.log("dados usuario id>>",response.data.userId)
         const json = JSON.stringify(response.data)
         localStorage.setItem('user', json)
         setUser({
-          id,
+          userId,
           name,
           email
         })
@@ -86,6 +87,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     setUser(undefined)
     localStorage.clear()
   }
+
+
 
   return (
     <AuthContext.Provider value={{error, sucess, user, logando, signout, register }}>

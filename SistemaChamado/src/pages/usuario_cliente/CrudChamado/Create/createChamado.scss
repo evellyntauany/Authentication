@@ -1,0 +1,16 @@
+.open_chamado{
+
+    &__label{
+        padding:10px;
+        input{
+            padding:10px;
+        }
+    }
+    button{
+      background-color:  #0f8b85;
+      color: #fff;
+      padding: 5px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+}

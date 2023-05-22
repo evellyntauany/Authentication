@@ -9,7 +9,7 @@ import './profile.scss'
 const Profile = () => {
   const api = setupAPIClient()
   const infos = useContext(AuthContext)
-  let id = infos.user?.id
+  let id = infos.user?.userId 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const auth = useContext(AuthContext)
@@ -29,7 +29,7 @@ const Profile = () => {
           console.error('ops! ocorreu um erro' + err)
         })
     }
-  }, [])
+  }, [api, id])
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()

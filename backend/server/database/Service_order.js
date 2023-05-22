@@ -2,6 +2,7 @@
 
 const Sequelize = require('sequelize');
 const db = require('./dataBase');
+const User = require('./User');
 //const Service_order = require('./Service_order'); // Importa o modelo de usuário
 
 const Service_order = db.define('service_order', {
@@ -22,7 +23,7 @@ const Service_order = db.define('service_order', {
 });
 
 // Define a relação entre Chamado e Usuário
-Service_order.belongsTo(Service_order);
+Service_order.belongsTo(User, { foreignKey: 'UserId' });
 
 // Verifica se a alteração na tabela
 Service_order.sync();

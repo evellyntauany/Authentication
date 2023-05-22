@@ -13,6 +13,7 @@ import Loggin from "./pages/Loggin";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile/index";
 import Create from "./pages/usuario_cliente/CrudChamado/Create"
+import ListChamados from "./pages/usuario_cliente/CrudChamado/ListChamados";
 
 
 
@@ -27,11 +28,13 @@ function App() {
       <Route path="PageAcess" element={<RequireAuth><PageAcess /></RequireAuth>} />
       <Route path="/Register" element={<Register />} />
       <Route path="/Profile" element={<RequireAuth><Profile/></RequireAuth>} />
+      <Route path="/chamados" element={<ListChamados />} />
 
       <Route path="/admin" element={<HomeAdm />} />
       <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
       <Route path="/user/:id" element={<Update />} />
       <Route path="/create/chamado" element={<Create />} />
+      
 
 
     </Routes></>

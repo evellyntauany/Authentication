@@ -4,25 +4,27 @@ import { AuthContext } from "../../../../contexts/Auth/AuthContext";
 import { CalledContext } from "../../../../contexts/CrudChamado/CalledContext";
 import { AuthProviderCalled } from './../../../../contexts/CrudChamado/AuthProviderCalled';
 import { setupAPIClient } from './../../../../hooks/useApi';
-
+import  './createChamado.scss'
 
 
 
 const ChamadoFormulario=()=> {
-  const called = useContext(CalledContext)
   const api = setupAPIClient()
   const [description, setDescription] = useState('');
   const auth = useContext(AuthContext);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmity = async (e: FormEvent) => {
     e.preventDefault();
+    if(description){
     // Lógica para submeter o chamado para o sistema de tickets
     console.log("Descrição do chamado: ", description);
-   const id = auth.user?.id
-   console.log("id user>",id)
+   const userId = auth.user?.userId
+   console.log("id user>",userId)
+
     await api
     .post('/chamados', {
-      description
+      description,
+      userId
     })
     .then((response) => {
       console.log(response)
@@ -30,13 +32,17 @@ const ChamadoFormulario=()=> {
     .catch((error) => {
       console.log(error)
     })
-   
+  }
+  else{
+    alert('Preencha o campo')
+  }
+  
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="open_chamado" onSubmit={handleSubmity}>
         <h2> Abertura de chamado</h2>
-      <label>
+      <label className="open_chamado__label">
         Descrição:
         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
       </label>
