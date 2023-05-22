@@ -2,7 +2,7 @@ const express = require('express');
 const routerClient = express.Router();
 const User = require('../database/User')
 const connection = require('../database/dataBase')
-
+const bcrypt = require("bcrypt");
 
 //Listando todos os usuarios clientes do banco 
 routerClient.get("/admin/users", async (req, res) => {
