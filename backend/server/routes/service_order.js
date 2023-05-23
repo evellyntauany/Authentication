@@ -64,7 +64,10 @@ router.delete('/deleteChamado/:id', async (req, res) => {
   try {
     const service_order = await Service_order.findByPk(req.params.id);
     if (!service_order) return res.status(404).json({ error: 'Chamado não encontrado.' });
-    await service_order.destroy();
+    
+    service_order.status = 'cancelado'; // Atualiza o campo 'status' para 'cancelado'
+    await service_order.save(); // Salva a alteração no banco de dados
+    
     return res.json({ message: 'Chamado excluído com sucesso.' });
   } catch (error) {
     console.log(error);

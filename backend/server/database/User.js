@@ -20,6 +20,14 @@ const User = db.define('users', {
     password:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    userType: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 1,
+        validate: {
+            isIn: [[1, 2, 3]] // Define 1 - Colaborador, 2 - Solucionador, 3 Administrador 
+        }
     }
 });
 
