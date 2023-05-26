@@ -13,12 +13,16 @@ const ChamadoFormulario=()=> {
   const [description, setDescription] = useState('');
   const auth = useContext(AuthContext);
 
+  const userId = auth.user?.userId
+  console.log("userId->>>", userId)
+
   const handleSubmity = async (e: FormEvent) => {
     e.preventDefault();
     if(description){
     // Lógica para submeter o chamado para o sistema de tickets
     console.log("Descrição do chamado: ", description);
-   const userId = auth.user?.userId
+    const userId = auth.user?.userId
+    console.log("userId->>>", userId)
 
 
     await api

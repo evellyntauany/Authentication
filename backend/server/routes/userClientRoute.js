@@ -28,7 +28,7 @@ routerClient.delete("/delete/:id", (req, res) => {
         id
     } = req.params
 
-    connection.query(`DELETE FROM users WHERE id = ${id}`, (error, results) => {
+    connection.query(`DELETE FROM users WHERE userId = ${id}`, (error, results) => {
         if (error) throw error;
         console.log(`Usuário com ID ${id} foi deletado com sucesso.`);
     });
@@ -109,6 +109,7 @@ routerClient.get("/search/:id", async (req, res) => {
 // Rota de cadastro usuario cliente
 routerClient.post('/cadastrar', async (req, res) => {
     const email = req.body.email;
+     const userType= req.body.selectedOption
     console.log("email sendo cadastrado>>", email)
     try {
         // Verificar se o usuário já está registrado
@@ -120,6 +121,8 @@ routerClient.post('/cadastrar', async (req, res) => {
         console.log("retorno do banco se ja esta cadastrado>>", user)
         const salt = await bcrypt.genSalt(10);
         console.log("salt>>", salt)
+        
+        console.log("numero de nivel selecionado->>",userType)
         if (user) {
             return res.status(409).json({
                 message: 'Este email já está sendo usado.'
@@ -128,7 +131,8 @@ routerClient.post('/cadastrar', async (req, res) => {
             var usr = {
                 name: req.body.name,
                 email: req.body.email,
-                password: await bcrypt.hash(req.body.password, salt)
+                password: await bcrypt.hash(req.body.password, salt),
+                userType: req.body.selectedOption
             };
             created_user = await User.create(usr);
             res.status(200).json(created_user);
@@ -171,5 +175,6 @@ routerClient.post('/signin', async function (req, res) {
       });
 
 });
+
 
 module.exports = routerClient;

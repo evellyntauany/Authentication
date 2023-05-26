@@ -23,7 +23,7 @@ const UpdateUser = () => {
       .catch((err) => {
         console.error('ops! ocorreu um erro' + err)
       })
-  }, [])
+  }, [api, id])
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()

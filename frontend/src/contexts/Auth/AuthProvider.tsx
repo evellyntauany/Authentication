@@ -20,24 +20,25 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     }
   }, [setUser])
 
-  async function register({ name, email, password }: UserRegister) {
+  async function register({ name, email, password,selectedOption }: UserRegister) {
     
     await api
       .post('/cadastrar', {
         name,
         email,
         password,
+        selectedOption
       })
       .then((response) => {
         if(response.status === 200) {
-        const { name, email,userType } = response.data
+        const { name, email, userType } = response.data
         const json = JSON.stringify(response.data) //para json
-        localStorage.setItem('user', json) //seta no meu localStorage
-        setUser({
+ //       localStorage.setItem('user', json) //seta no meu localStorage
+    /*    setUser({
           name,
           email,
           userType
-        })
+        })*/
         setError('')
         setSucess("Cadastro efetuado com sucesso")
         

@@ -1,6 +1,6 @@
 const index = () => {
       return(
-            <><h1>Acesso restrito</h1><p>errp</p></>
+            <><h1>Pagina de erro</h1><p>errp</p></>
       )
 
 }

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import './styleList.scss'
 import LinkComponent from '../../../../components/Link'
 import { FaRegTrashAlt } from 'react-icons/fa'
-import { PermissionType } from './../../../../types/PermissionType';
 
 interface usersdb {
   userType: number;

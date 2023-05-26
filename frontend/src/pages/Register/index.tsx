@@ -15,6 +15,7 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [Error, setError] = useState('')
+  const [selectedOption, setSelectedOption] = useState<number>(3);
 
   const navigate = useNavigate()
   const logo = require('../../assets/logoSemFund.png')
@@ -31,16 +32,25 @@ const Register = () => {
     },
   })
 
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = Number(event.target.value);
+    setSelectedOption(selectedValue);
+    console.log("setando o numero->>",selectedValue);
+  };
+  console.log(selectedOption)
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     setError('')
 
     if (password == confirmPassword) {
       console.log('entrou aqui')
+      console.log(selectedOption)
       const usuario = {
         name,
         email,
         password,
+        selectedOption
       }
 
       auth.register(usuario)
@@ -150,15 +160,12 @@ const Register = () => {
             </label>
 
             {user?.userType === 1 ? (
-              <label id="label_login">
-            
+              <label className="label_login label__select">
                 Permissao de usuario
-                <select  name="cars">
-                  <option value="volvo" selected>
-                    1 - Administrador
-                  </option>
-                  <option value="saab">2 - Colaborador</option>
-                  <option value="fiat">3- Cliente</option>
+                <select value={selectedOption} onChange={handleSelectChange} name="nivel">
+                  <option value="1" >1 - Administrador</option>
+                  <option value="2">2 - Colaborador</option>
+                  <option value="3">3- Cliente</option>
                 </select>
               </label>
             ) : (

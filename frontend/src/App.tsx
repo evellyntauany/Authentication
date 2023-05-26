@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { RequireAuth } from './contexts/Auth/RequireAuth'
-import {PermissionType} from './types/PermissionType'
+import { PermissionType } from './types/PermissionType'
 
 import ListUsuarios from './pages/usuario_adm/Crud/ListUsuarios'
 import Update from './pages/usuario_adm/Crud/Update'
@@ -14,56 +14,26 @@ import Create from './pages/usuario_cliente/CrudChamado/Create'
 import ListChamados from './pages/usuario_cliente/CrudChamado/ListChamados'
 import PrivateRoute from './contexts/Auth/PrivateRoute'
 import PageError from './pages/Error'
-
-
+import Boarding from './pages/usuario_adm/Boarding'
+import Loggin from './pages/Loggin'
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-      <Route path="/erro" element={<PageError />} />
-      
-      <Route path="/Profile" element={
-      <PrivateRoute
-        redirectPath="/Profile"
-        component={Profile}
-        permission={PermissionType.TYPE_3}
-      />
-    } />
-
-        <Route
-          path="/Login"
-          element={
-            <RequireAuth>
-              <PageAcess />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="PageAcess"
-          element={
-            <RequireAuth>
-              <PageAcess />
-            </RequireAuth>
-          }
-        />
-        <Route path="/Register" element={<Register />} />
-        <Route
-          path="/Profile"
-          element={
-            <RequireAuth>
-              <Profile />
-            </RequireAuth>
-          }
-        />
+        <Route path="/erro" element={<PageError />} />
         <Route path="/chamados" element={<ListChamados />} />
-        <Route path="/" element={<Home />} />
-
+        <Route path="/login" element={<Loggin/>} />
+     
         <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
         <Route path="/user/:id" element={<Update />} />
         <Route path="/create/chamado" element={<Create />} />
-       
+   
+        <Route path="/Home" element={<Home />} />
+        <Route path="/login" element={<ListUsuarios></ListUsuarios>} />
+        <Route path="/boarding" element={<Boarding />} />
+        <Route path="/Register" element={<Register />} />
       </Routes>
     </>
   )

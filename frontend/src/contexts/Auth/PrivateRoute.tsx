@@ -18,10 +18,13 @@ function PrivateRoute({
   const auth = useContext(AuthContext)
   const TypeUser = auth.user?.userType
 
+  console.log('TYPEuSER',TypeUser)
+  console.log('redirect->>',redirectPath)
+
   if (TypeUser === permission) {
     return <Navigate to={redirectPath} />;
   } else {
-    return <Navigate to='/erro' />;
+    return <Navigate to={redirectPath}  />;
   }
 };
 

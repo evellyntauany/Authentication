@@ -5,9 +5,8 @@ const Service_order = require('../database/Service_order');
 //Cria chamado
 router.post('/chamados', async (req, res) => {
   try {
-    console.log(req.body)
     const { description, userId } = req.body;
-    const post = await Service_order.create({ description, UserId: userId });
+    const post = await Service_order.create({ description, userId: userId });
     res.json(post);
   } catch (error) {
     console.log(error);
@@ -15,8 +14,8 @@ router.post('/chamados', async (req, res) => {
   }
 });
 
-//Le os chamados
-router.get('/chamados', async (req, res) => {
+//Busca todos os chamados
+router.get('/allchamados', async (req, res) => {
   try {
     const service_orders = await Service_order.findAll();
     return res.json({ service_orders });
