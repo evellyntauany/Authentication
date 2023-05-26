@@ -9,8 +9,7 @@ const List = (props: PropsList) => {
   const api = setupAPIClient()
 
   const onDelete = (id: number) => {
-    console.log(id)
-    api.delete(`/deleteChamado/${id}`)
+    api.put(`/deleteChamado/${id}`)
   }
 
   return (
@@ -22,7 +21,7 @@ const List = (props: PropsList) => {
           <li>Criado em: {chamado.createdAt}</li>
           <li>Descricao: {chamado.description}</li>
           <li>Status:{chamado.status}</li>
-          <button onClick={() => onDelete(chamado.id)}>Excluir</button>
+          <button onClick={() => onDelete(chamado.id)}>Cancelar chamado</button>
         </div>
       ))}
     </ul>

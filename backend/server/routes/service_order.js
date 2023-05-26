@@ -60,7 +60,7 @@ router.put('/atualizaChamado/:id', async (req, res) => {
 });
 
 //Deleta chamado por ID
-router.delete('/deleteChamado/:id', async (req, res) => {
+router.put('/deleteChamado/:id', async (req, res) => {
   try {
     const service_order = await Service_order.findByPk(req.params.id);
     if (!service_order) return res.status(404).json({ error: 'Chamado não encontrado.' });

@@ -30,14 +30,11 @@ const ListChamados = () => {
 
   useEffect(() => {
     const userId = auth.user?.userId
-    console.log('id user>', userId)
     api
       .get(`/chamadoId/${userId}`)
       .then((res) => {
         const id = res.data
-        console.log('id do user aqui>>', id)
         setChamados(id)
-    
       })
       .catch((error) => {
         console.log(error)

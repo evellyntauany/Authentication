@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 //Listando todos os usuarios clientes do banco 
 routerClient.get("/admin/users", async (req, res) => {
     await User.findAll({
-            attributes: ['userId', 'name', 'email']
+            attributes: ['userId', 'name', 'email','userType']
         })
         .then((data) => {
             return res.json({
@@ -145,32 +145,31 @@ routerClient.post('/cadastrar', async (req, res) => {
 routerClient.post('/signin', async function (req, res) {
     const email = req.body.email;
     const password = req.body.password;
-    console.log(">>email", email)
-    console.log(">>senha", password)
 
-    try {
-        const user = await User.findOne({
-            email
-        }); //Problema aqui: o user esta trazendo todos os registros do banco entao ele loga achando que existe o email no banco
-        console.log("se encontrou o user>>", user)
-        if (!user) {
-            return res.status(400).send("Não localizamos o name!");
-        }
+    User.findOne({
+        where: { email: email }
+      }).then(async user => {
+        if (user) {
+          // O email foi encontrado
+          console.log('Encontrou esse user->>>>',user);
 
-        const passwordMatch = await bcrypt.compare(password, user.password);
-
-        if (passwordMatch) {
-            res.send(user);
+          const passwordMatch = await bcrypt.compare(password, user.password);
+          if (passwordMatch) {
+              res.send(user);
+          } else {
+              res.status(403).json({
+                  error: 'Senha incorreta'
+              });
+          }
+          
         } else {
-            res.status(403).json({
-                error: 'Senha incorreta'
-            });
+          // O email não foi encontrado
+          console.log('Email não encontrado');
         }
-    } catch (error) {
-        res.status(500).json({
-            error: 'Erro ao logar'
-        });
-    }
+      }).catch(error => {
+        console.error(error);
+      });
+
 });
 
 module.exports = routerClient;

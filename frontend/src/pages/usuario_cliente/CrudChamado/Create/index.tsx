@@ -19,7 +19,7 @@ const ChamadoFormulario=()=> {
     // Lógica para submeter o chamado para o sistema de tickets
     console.log("Descrição do chamado: ", description);
    const userId = auth.user?.userId
-   console.log("id user>",userId)
+
 
     await api
     .post('/chamados', {

@@ -18,6 +18,7 @@ const Register = () => {
 
   const navigate = useNavigate()
   const logo = require('../../assets/logoSemFund.png')
+  const { user } = useContext(AuthContext)
 
   const [form, setForm] = useState({
     email: {
@@ -44,9 +45,9 @@ const Register = () => {
 
       auth.register(usuario)
       const sucesso = auth.sucess
-      if(sucesso){
+      if (sucesso) {
         console.log(auth.sucess)
-         return navegate('/') //redirect nao funciona corretamente, ele nao atualiza o estado do sucess
+        return navegate('/') //redirect nao funciona corretamente, ele nao atualiza o estado do sucess
       }
     } else {
       console.log('Senhas não são iguais')
@@ -55,7 +56,6 @@ const Register = () => {
   }
   return (
     <>
-
       <div className="ContainerRegister">
         <div className="form__login">
           {auth.error ? <p className="error_class">{auth.error}</p> : ''}
@@ -148,6 +148,22 @@ const Register = () => {
               ></input>
               {Error ? <p className="error">{Error}</p> : ''}
             </label>
+
+            {user?.userType === 1 ? (
+              <label id="label_login">
+            
+                Permissao de usuario
+                <select  name="cars">
+                  <option value="volvo" selected>
+                    1 - Administrador
+                  </option>
+                  <option value="saab">2 - Colaborador</option>
+                  <option value="fiat">3- Cliente</option>
+                </select>
+              </label>
+            ) : (
+              ''
+            )}
 
             <section className="section_btnLogin">
               <button

@@ -16,8 +16,13 @@ const Navbar = () => {
       </div>
      
         <div className="Container__links">
-          <LinkComponent toPage="/"  children="Home"></LinkComponent>         
+          <LinkComponent toPage="/"  children="Home"></LinkComponent>     
+          {user?.userType === 1 ? (
+          <LinkComponent toPage="/listUsuarios"  children="Usuario cadastrados"></LinkComponent>
+          ) : (
+            '')   }    
           </div>
+          
 
           <div className='Container__btns'>
           {user ? (

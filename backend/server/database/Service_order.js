@@ -23,7 +23,7 @@ const Service_order = db.define('service_order', {
 });
 
 // Define a relação entre Chamado e Usuário
-Service_order.belongsTo(User, { foreignKey: 'UserId' });
+Service_order.belongsTo(User, { foreignKey: 'userId' });
 
 // Verifica se a alteração na tabela
 Service_order.sync();

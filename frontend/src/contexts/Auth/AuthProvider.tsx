@@ -30,12 +30,13 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
       })
       .then((response) => {
         if(response.status === 200) {
-        const { name, email } = response.data
+        const { name, email,userType } = response.data
         const json = JSON.stringify(response.data) //para json
         localStorage.setItem('user', json) //seta no meu localStorage
         setUser({
           name,
           email,
+          userType
         })
         setError('')
         setSucess("Cadastro efetuado com sucesso")
@@ -69,7 +70,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         setUser({
           userId,
           name,
-          email
+          email,
         })
       })
       .catch((error) => {

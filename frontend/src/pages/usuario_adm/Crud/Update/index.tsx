@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import LinkComponent from '../../../../components/Link'
 import { setupAPIClient } from '../../../../hooks/useApi'
 import { useNavigate } from 'react-router-dom';
-import Navbar from './../../Navbar/index';
 
 const UpdateUser = () => {
   const api = setupAPIClient()
@@ -51,7 +50,6 @@ const UpdateUser = () => {
   }
   return (
     <>
-    <Navbar></Navbar>
     <div className="ContainerUpdate">
       <h1>Pagina de atualizacao de cadastro</h1>
       <form onSubmit={handleSubmit}>
