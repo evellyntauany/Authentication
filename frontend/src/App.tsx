@@ -29,6 +29,7 @@ function App() {
         <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
         <Route path="/user/:id" element={<Update />} />
         <Route path="/create/chamado" element={<Create />} />
+        <Route path="/chamados" element={<ListChamados/>} />
    
         <Route path="/Home" element={<Home />} />
         <Route path="/login" element={<ListUsuarios></ListUsuarios>} />
