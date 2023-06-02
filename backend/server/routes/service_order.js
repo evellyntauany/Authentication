@@ -38,7 +38,7 @@ router.get("/allchamados", async (req, res) => {
               mensagem: "errooooo"
           })
       })
-
+  })
 //Chamados por tipo
 router.get('/chamadoTipo/:tipoSolicitacao', async (req, res) => {
   const userId = req.params.id;
