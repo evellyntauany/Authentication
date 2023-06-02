@@ -39,6 +39,37 @@ router.get("/allchamados", async (req, res) => {
           })
       })
 
+//Chamados por tipo
+router.get('/chamadoTipo/:tipoSolicitacao', async (req, res) => {
+  const userId = req.params.id;
+  console.log(userId);
+  try {
+   
+    const service_order = await Service_order.findAll({ where: { UserId: userId } });
+    console.log("Chamadossss>>>>>",service_order)
+    if (!service_order) {
+    return res.status(404).json({ error: 'Chamado não encontrado.' });
+    }
+    if(service_order){
+    return res.json(service_order);
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Erro ao buscar o chamado.' });
+  }
+});
+
+//Atualiza chamado por ID
+router.put('/atualizaChamado/:id', async (req, res) => {
+  try {
+    const service_order = await Service_order.findByPk(req.params.id);
+    if (!service_order) return res.status(404).json({ error: 'Chamado não encontrado.' });
+    await service_order.update(req.body);
+    return res.json({ service_order });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Erro ao atualizar o chamado.' });
+  }
 });
       
 

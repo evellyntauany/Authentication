@@ -16,6 +16,10 @@ const Service_order = db.define('service_order', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    tipoSolicitacao: {
+        type: Sequelize.ENUM('Formatar computador', 'Sem internet', 'Sem vídeo no computador', 'Computador lento', 'USB não finciona', 'Instalar impressora'),
+        defaultValue: 'Formatar computador'
+    },
     status: {
         type: Sequelize.ENUM('aberto', 'encerrado', 'pendente_usuário', 'pedente_solucionado', 'cancelado'),
         defaultValue: 'aberto'

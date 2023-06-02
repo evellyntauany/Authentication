@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bcrypt = require("bcrypt");
 const mensagem = require('../database/mensagens');
+const router = express.Router();
 
 app.use(express.json());
 const cors = require('cors');
