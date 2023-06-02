@@ -1,7 +1,7 @@
 import { setupAPIClient } from '../../hooks/useApi'
 
 type PropsList = {
-  lista: Array<string | number | any>
+  lista: Array<string | number | any > | any[] 
   Nameclass?: string;
 }
 
@@ -11,6 +11,7 @@ const List = (props: PropsList) => {
   const onDelete = (id: number) => {
     api.put(`/deleteChamado/${id}`)
   }
+
 
   return (
     <ul>

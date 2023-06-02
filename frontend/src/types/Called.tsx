@@ -1,4 +1,6 @@
-enum statusEnum{
+import { ReactNode } from "react";
+
+export enum statusEnum{
     aberto, 
     encerrado,
     pendente_usuário,
@@ -7,8 +9,18 @@ enum statusEnum{
 }
 
 
+
 export type description ={
     id?:number;
     description: string;
 }
+
+export type Ichamado = {
+    userId: number
+    createdAt: ReactNode;
+    description: string
+    id: number;
+    status: statusEnum
+    updatedAt: ReactNode
+  }
 

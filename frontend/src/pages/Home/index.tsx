@@ -1,17 +1,15 @@
-import './style.scss'
-import Navbar from '../usuario_cliente/Navbar/index'
 import LinkComponent from '../../components/Link'
 import { FaBook, FaClipboardList } from 'react-icons/fa'
 import { AuthContext } from '../../contexts/Auth/AuthContext'
 import { useContext } from 'react'
-
-;<style>
-  @import uimport LinkComponent from './../../components/Link/index';
-  rl('https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=Inter:wght@300;400&display=swap');
-</style>
+import Card from '../../components/Card'
+import './style.scss'
 
 const Home = () => {
   const user = useContext(AuthContext)
+
+  console.log(user.user?.userType)
+
   return (
     <>
       <section className="card_create collum">
@@ -20,31 +18,34 @@ const Home = () => {
           <p>O que podemos ajudar?</p>
         </section>
         <div className="row">
-        <LinkComponent className="link__called" toPage="/chamados">
-        <div className="card red">
-              <section>
-                {' '}
-                Meus chamados <FaClipboardList />
-              </section>
-              <p>Acessar meus chamados</p>
-            </div>
-          </LinkComponent>
+          {user.user?.userType === 2 ? (
 
-          <div className="card red">
-            <section>Artigos <FaBook/></section>
-            <p>Acesse artigos</p>
+            <LinkComponent className="link__called" toPage="/allchamados">
+              <Card children={'Acessar chamados'} icon={FaClipboardList}></Card>
+            </LinkComponent>
             
-          </div>
+          ) : (
+            <>
+              <LinkComponent className="link__called" toPage="/chamados">
+                <Card
+                  className={'card'}
+                  children={'Meus chamados'}
+                  icon={FaClipboardList}
+                ></Card>
+              </LinkComponent>
 
-          <LinkComponent className="link__called" toPage="/create/chamado">
-            <div className="card red">
-              <section>
-                {' '}
-                Abrir solicitacao <FaClipboardList />
-              </section>
-              <p>Abrir novo chamado</p>
-            </div>
-          </LinkComponent>
+              <LinkComponent className="link__called" toPage="/">
+                <Card children={'Artigos'} icon={FaBook}></Card>
+              </LinkComponent>
+
+              <LinkComponent className="link__called" toPage="/create/chamado">
+                <Card
+                  children={'Abrir solicitacao'}
+                  icon={FaClipboardList}
+                ></Card>
+              </LinkComponent>
+            </>
+          )}
         </div>
       </section>
     </>

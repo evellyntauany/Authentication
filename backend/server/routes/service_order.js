@@ -5,102 +5,151 @@ const Service_order = require('../database/Service_order');
 //Cria chamado
 router.post('/chamados', async (req, res) => {
   try {
-    const { description, userId } = req.body;
-    const post = await Service_order.create({ description, userId: userId });
+    const {
+      description,
+      userId
+    } = req.body;
+    const post = await Service_order.create({
+      description,
+      userId: userId
+    });
     res.json(post);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ error: 'Erro ao criar um chamado.' });
+    return res.status(500).json({
+      error: 'Erro ao criar um chamado.'
+    });
   }
 });
 
 //Busca todos os chamados
-router.get('/allchamados', async (req, res) => {
-  try {
-    const service_orders = await Service_order.findAll();
-    return res.json({ service_orders });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: 'Erro ao buscar os chamados.' });
-  }
-});
 
-//Le os chamados por ID
-router.get('/chamadoId/:id', async (req, res) => {
-  const userId = req.params.id;
-  console.log(userId);
-  try {
-   
-    const service_order = await Service_order.findAll({ where: { UserId: userId } });
-    console.log("Chamadossss>>>>>",service_order)
-    if (!service_order) {
-    return res.status(404).json({ error: 'Chamado não encontrado.' });
-    }
-    if(service_order){
-    return res.json(service_order);
-    }
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: 'Erro ao buscar o chamado.' });
-  }
-});
+router.get("/allchamados", async (req, res) => {
+  await Service_order.findAll({
+      attributes: ['id', 'description', 'status', 'createdAt', 'userId']
+      })
+      .then((data) => {
+          return res.json({
+              data
+          })
+      }).catch(() => {
+          return res.status(400).json({
+              error: true,
+              mensagem: "errooooo"
+          })
+      })
 
-//Atualiza chamado por ID
-router.put('/atualizaChamado/:id', async (req, res) => {
-  try {
-    const service_order = await Service_order.findByPk(req.params.id);
-    if (!service_order) return res.status(404).json({ error: 'Chamado não encontrado.' });
-    await service_order.update(req.body);
-    return res.json({ service_order });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: 'Erro ao atualizar o chamado.' });
-  }
 });
+      
 
-//Deleta chamado por ID (Alterar o nome despois para cancelado)
-router.put('/deleteChamado/:id', async (req, res) => {
-  try {
-    const service_order = await Service_order.findByPk(req.params.id);
-    if (!service_order) return res.status(404).json({ error: 'Chamado não encontrado.' });
-    
-    service_order.status = 'cancelado'; // Atualiza o campo 'status' para 'cancelado'
-    await service_order.save(); // Salva a alteração no banco de dados
-    
-    return res.json({ message: 'Chamado excluído com sucesso.' });
-  } catch (error) {
-    return res.status(500).json({ error: 'Erro ao excluir o chamado.' });
-  }
-});
+    //Le os chamados por ID
+    router.get('/chamadoId/:id', async (req, res) => {
+      const userId = req.params.id;
+     console.log('id vindo -->>>',userId);
+      try {
 
-router.put('/chamadoPendenteUser/:id', async (req, res) => {
-  try {
-    const service_order = await Service_order.findByPk(req.params.id);
-    if (!service_order) return res.status(404).json({ error: 'Chamado não encontrado.' });
-    
-    service_order.status = 'pendente_usuário'; // Atualiza o campo 'status' para 'cancelado'
-    await service_order.save(); // Salva a alteração no banco de dados
-    
-    return res.json({ message: 'Chamado excluído com sucesso.' });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: 'Erro ao excluir o chamado.' });
-  }
-});
+        const service_order = await Service_order.findAll({
+          where: {
+            userId: userId
+          }
+        });
+        console.log("Chamadossss>>>>>", service_order)
+        if (!service_order) {
+          return res.status(404).json({
+            error: 'Chamado não encontrado.'
+          });
+        }
+        if (service_order) {
+          return res.json(service_order);
+        }
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          error: 'Erro ao buscar o chamado.'
+        });
+      }
+    });
 
-router.put('/chamadoPendenteSolicitante/:id', async (req, res) => {
-  try {
-    const service_order = await Service_order.findByPk(req.params.id);
-    if (!service_order) return res.status(404).json({ error: 'Chamado não encontrado.' });
-    
-    service_order.status = 'pedente_solucionado'; // Atualiza o campo 'status' para 'cancelado'
-    await service_order.save(); // Salva a alteração no banco de dados
-    
-    return res.json({ message: 'Chamado excluído com sucesso.' });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: 'Erro ao excluir o chamado.' });
-  }
-});
+    //Atualiza chamado por ID
+    router.put('/atualizaChamado/:id', async (req, res) => {
+      try {
+        const service_order = await Service_order.findByPk(req.params.id);
+        if (!service_order) return res.status(404).json({
+          error: 'Chamado não encontrado.'
+        });
+        await service_order.update(req.body);
+        return res.json({
+          service_order
+        });
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          error: 'Erro ao atualizar o chamado.'
+        });
+      }
+    });
 
-module.exports = router;
+    //Deleta chamado por ID (Alterar o nome despois para cancelado)
+    router.put('/deleteChamado/:id', async (req, res) => {
+      try {
+        const service_order = await Service_order.findByPk(req.params.id);
+        if (!service_order) return res.status(404).json({
+          error: 'Chamado não encontrado.'
+        });
+
+        service_order.status = 'cancelado'; // Atualiza o campo 'status' para 'cancelado'
+        await service_order.save(); // Salva a alteração no banco de dados
+
+        return res.json({
+          message: 'Chamado excluído com sucesso.'
+        });
+      } catch (error) {
+        return res.status(500).json({
+          error: 'Erro ao excluir o chamado.'
+        });
+      }
+    });
+
+    router.put('/chamadoPendenteUser/:id', async (req, res) => {
+      try {
+        const service_order = await Service_order.findByPk(req.params.id);
+        if (!service_order) return res.status(404).json({
+          error: 'Chamado não encontrado.'
+        });
+
+        service_order.status = 'pendente_usuário'; // Atualiza o campo 'status' para 'cancelado'
+        await service_order.save(); // Salva a alteração no banco de dados
+
+        return res.json({
+          message: 'Chamado excluído com sucesso.'
+        });
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          error: 'Erro ao excluir o chamado.'
+        });
+      }
+    });
+
+    router.put('/chamadoPendenteSolicitante/:id', async (req, res) => {
+      try {
+        const service_order = await Service_order.findByPk(req.params.id);
+        if (!service_order) return res.status(404).json({
+          error: 'Chamado não encontrado.'
+        });
+
+        service_order.status = 'pedente_solucionado'; // Atualiza o campo 'status' para 'cancelado'
+        await service_order.save(); // Salva a alteração no banco de dados
+
+        return res.json({
+          message: 'Chamado excluído com sucesso.'
+        });
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          error: 'Erro ao excluir o chamado.'
+        });
+      }
+    });
+
+    module.exports = router;

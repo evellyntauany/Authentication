@@ -14,7 +14,7 @@ export const AuthProviderAdm = ({ children }: { children: JSX.Element }) => {
       const foundUser = JSON.parse(loggedInUser) //Para string
       setUserAdm(foundUser)
     }
-  }, [setUserAdm])
+  }, [])
 
   const logandoAdm = async ({ email, password }: UserLogin) => {
     await api
