@@ -10,15 +10,48 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [sucess, setSucess] = useState('');
 
   useEffect(() => {
+    const checkLocalStorage = () => {
+      const data = localStorage.getItem('user');
+      if (data) {
+        const foundUser = JSON.parse(data)
+        setUser(foundUser)
+      }
+    };
+  
+    checkLocalStorage();
+  
+    const handleStorageChange = (event: StorageEvent) => {
+      // Verifica se a chave específica foi alterada
+      if (event.key === 'user') {
+        // Chama a função de verificação
+        checkLocalStorage();
+      }
+    };
+  
+    // Adiciona o ouvinte de evento "storage"
+    window.addEventListener('storage', handleStorageChange);
+  
+    // Função de limpeza para remover o ouvinte de evento quando o componente for desmontado
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+  
+/*
+  useEffect(() => {
     const loggedInUser = localStorage.getItem('user')
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser) //Para string
-      console.log(foundUser)
+   //   console.log(foundUser)
       setUser(foundUser)
     }else{
       setUser(undefined)
     }
-  }, [setUser])
+  }, [localStorage])
+*/
+
+
 
   async function register({ name, email, password,selectedOption }: UserRegister) {
     

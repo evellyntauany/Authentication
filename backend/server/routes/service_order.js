@@ -40,6 +40,7 @@ router.get("/allchamados", async (req, res) => {
       })
   })
 //Chamados por tipo
+/*
 router.get('/chamadoTipo/:tipoSolicitacao', async (req, res) => {
   const userId = req.params.id;
   console.log(userId);
@@ -58,7 +59,7 @@ router.get('/chamadoTipo/:tipoSolicitacao', async (req, res) => {
     return res.status(500).json({ error: 'Erro ao buscar o chamado.' });
   }
 });
-
+*/
 //Atualiza chamado por ID
 router.put('/atualizaChamado/:id', async (req, res) => {
   try {
@@ -71,9 +72,37 @@ router.put('/atualizaChamado/:id', async (req, res) => {
     return res.status(500).json({ error: 'Erro ao atualizar o chamado.' });
   }
 });
-      
 
-    //Le os chamados por ID
+
+    //Le os chamados por ID do chamado
+    router.get('/chamadoOne/:id', async (req, res) => {
+      const id = req.params.id;
+      console.log('id vindo -->>>', id);
+      try {
+
+        const service_order = await Service_order.findAll({
+          where: {
+            id: id
+          }
+        });
+        console.log("Chamado>>>>>", service_order)
+        if (!service_order) {
+          return res.status(404).json({
+            error: 'Chamado não encontrado.'
+          });
+        }
+        if (service_order) {
+          return res.json(service_order);
+        }
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          error: 'Erro ao buscar o chamado.'
+        });
+      }
+    });
+
+    //Le os chamados por ID do UserId criador do chamado {busca todos os chamados que o user criou}
     router.get('/chamadoId/:id', async (req, res) => {
       const userId = req.params.id;
      console.log('id vindo -->>>',userId);

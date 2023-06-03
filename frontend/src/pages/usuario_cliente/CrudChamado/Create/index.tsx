@@ -18,12 +18,9 @@ const ChamadoFormulario=()=> {
 
   const handleSubmity = async (e: FormEvent) => {
     e.preventDefault();
-    if(description){
+    if(description && userId){
     // Lógica para submeter o chamado para o sistema de tickets
     console.log("Descrição do chamado: ", description);
-    const userId = auth.user?.userId
-    console.log("userId->>>", userId)
-
 
     await api
     .post('/chamados', {
@@ -31,7 +28,7 @@ const ChamadoFormulario=()=> {
       userId
     })
     .then((response) => {
-      console.log(response)
+      alert('chamado criado')
     })
     .catch((error) => {
       console.log(error)

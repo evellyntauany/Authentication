@@ -94,10 +94,9 @@ routerClient.get("/search/:id", async (req, res) => {
                 message: 'Registro não encontrado'
             });
         }
-
-        return res.status(200).json({
-            user
-        });
+        
+        const userData = user.toJSON(); // Converta o objeto retornado pelo Sequelize em um objeto JSON
+        res.json(userData); // Envie o objeto como resposta para o cliente
     } catch (error) {
         console.error(error);
         return res.status(500).send({

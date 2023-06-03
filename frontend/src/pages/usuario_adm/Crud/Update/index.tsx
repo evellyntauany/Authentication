@@ -12,6 +12,8 @@ const UpdateUser = () => {
   const navegate = useNavigate()
   const [error,setError] =useState('')
 
+  
+
   useEffect(() => {
     api
       .get(`/search/${id}`)
