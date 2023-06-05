@@ -30,7 +30,7 @@ routerClient.delete("/delete/:id", (req, res) => {
 
     connection.query(`DELETE FROM users WHERE userId = ${id}`, (error, results) => {
         if (error) throw error;
-        console.log(`Usuário com ID ${id} foi deletado com sucesso.`);
+      
     });
 });
 
@@ -70,12 +70,11 @@ routerClient.put('/updateId/:id', async (req, res) => {
 //Atualizando informacoes de um id  de usuario cliente especifico 
 routerClient.put("/user/:id", (req, res) => {
     const id = req.params.id;
-    console.log("atualizacao do usuario com id ", id)
     const {
         name,
         email
     } = req.body;
-    console.log("atualizacao :", name)
+    
     let SQL = "UPDATE FROM users SET `name` = ?, `email` = ?, `password` = ? WHERE id =?"
     // User.query(SQL,[id])
 });
@@ -87,8 +86,7 @@ routerClient.get("/search/:id", async (req, res) => {
     try {
         // Encontre o registro no banco de dados pelo ID
         const user = await User.findByPk(userId);
-        console.log("id userrr", userId)
-        console.log("userrrrr", user)
+    
         if (!user) {
             return res.status(404).send({
                 message: 'Registro não encontrado'
@@ -109,7 +107,7 @@ routerClient.get("/search/:id", async (req, res) => {
 routerClient.post('/cadastrar', async (req, res) => {
     const email = req.body.email;
      const userType= req.body.selectedOption
-    console.log("email sendo cadastrado>>", email)
+
     try {
         // Verificar se o usuário já está registrado
         const user = await User.findOne({
@@ -117,11 +115,9 @@ routerClient.post('/cadastrar', async (req, res) => {
                 email
             }
         });
-        console.log("retorno do banco se ja esta cadastrado>>", user)
+    
         const salt = await bcrypt.genSalt(10);
-        console.log("salt>>", salt)
-        
-        console.log("numero de nivel selecionado->>",userType)
+       
         if (user) {
             return res.status(409).json({
                 message: 'Este email já está sendo usado.'
@@ -154,7 +150,7 @@ routerClient.post('/signin', async function (req, res) {
       }).then(async user => {
         if (user) {
           // O email foi encontrado
-          console.log('Encontrou esse user->>>>',user);
+         
 
           const passwordMatch = await bcrypt.compare(password, user.password);
           if (passwordMatch) {
@@ -167,7 +163,7 @@ routerClient.post('/signin', async function (req, res) {
           
         } else {
           // O email não foi encontrado
-          console.log('Email não encontrado');
+        
         }
       }).catch(error => {
         console.error(error);

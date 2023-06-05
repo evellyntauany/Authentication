@@ -17,7 +17,7 @@ const Service_order = db.define('service_order', {
         allowNull: false
     },
     tipoSolicitacao: {
-        type: Sequelize.ENUM('Formatar computador', 'Sem internet', 'Sem vídeo no computador', 'Computador lento', 'USB não finciona', 'Instalar impressora'),
+        type: Sequelize.ENUM('Formatar computador', 'Sem internet', 'Sem vídeo no computador', 'Computador lento', 'USB não funciona', 'Instalar impressora'),
         defaultValue: 'Formatar computador'
     },
     status: {

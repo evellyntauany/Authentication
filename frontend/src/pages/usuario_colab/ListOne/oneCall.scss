@@ -5,9 +5,36 @@
       margin: 2rem 0;
 
       &__all {
+            background-color: #0f8b8514;
+            width: 60%;
+      }
+
+      &__form {
+            display: flex;
+            flex-direction: row;
+
+            textarea {
+                  width: 90%;
+                  height: 50px;
+                  font-size: 1.1em;
+                  padding: 1rem;
+            }
+
+            button {
+                  background-color: #0f8b85;
+                  color: #fff;
+                  width: 10%;
+                  height: 50px;
+                  border: none;
+                  cursor: pointer;
+            }
+      }
+
+      &__list {
             section {
                   display: flex;
                   justify-content: center;
+                  margin: 2rem 0;
 
                   //  padding: 1rem;
 
@@ -19,7 +46,9 @@
       }
 
       &__mensagens {
-            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
             section {
                   background-color: rgb(15 139 133 / 6%);
@@ -28,12 +57,21 @@
                   border-radius: 4px;
                   padding: 10px;
                   margin-bottom: 10px;
+                  width: 90%;
+
+                  h3 {
+                        font-weight: bold;
+                        margin-bottom: 0.5rem;
+                  }
+
             }
+
       }
 
-
-
-      form {
-            width: 30%;
+      &__you {
+            border-bottom-style: ridge;
+            display: inline-block;
+          
       }
+
 }

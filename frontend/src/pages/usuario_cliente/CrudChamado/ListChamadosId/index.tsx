@@ -24,9 +24,11 @@ const ListChamadosId = () => {
 
   useEffect(() => {
     const userId = auth.user?.userId
+    console.log(userId)
     api
       .get(`/chamadoId/${userId}`)
       .then((res) => {
+        
         const id = res.data
         setChamados(id)
       })
@@ -34,6 +36,7 @@ const ListChamadosId = () => {
         console.log(error)
       })
   }, [api, auth])
+  
 
   return (
       <List lista={chamados} Nameclass={'list__chamado'}></List>

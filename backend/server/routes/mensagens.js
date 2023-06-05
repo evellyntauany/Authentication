@@ -19,10 +19,7 @@ try {
         usuarioId,
         chamadoId
     } = req.body;
-    console.log(' chamadoId->>', chamadoId)
-    console.log(' mensagem->>', conteudo)
-    console.log(' id do user que ta respondendo->>', usuarioId)
-
+  
     // Verifique se o usuário respondente e o chamado existem no banco de dados
     const usuario = await Usuario.findByPk(usuarioId);
     const chamado = await Chamado.findByPk(chamadoId);
@@ -84,7 +81,7 @@ router.get('/mensagens/:id', async (req, res) => {
             res.status(200).json(mensagenss);
         }
     } catch (error) {
-        console.log(error);
+    
         return res.status(500).json({
           error: 'Erro ao buscar o chamado.'
         });

@@ -5,6 +5,7 @@ import { setupAPIClient } from '../../../hooks/useApi'
 import './oneCall.scss'
 import { AuthContext } from '../../../contexts/Auth/AuthContext'
 import { User } from '../../../types/User'
+import LinkComponent from '../../../components/Link'
 
 type mensagem = {
   id: number
@@ -13,7 +14,6 @@ type mensagem = {
   updatedAt: Date
   usuarioId: number
 }
-
 
 const ListOne = (props: { idCall: any }) => {
   const [chamados, setChamados] = useState<Ichamado[]>([])
@@ -24,9 +24,11 @@ const ListOne = (props: { idCall: any }) => {
   const api = setupAPIClient()
   const { user } = useContext(AuthContext)
   const userId = user?.userId
+  const [status, setStatus] = useState('');
 
   const meuNumero = parseInt(props.idCall, 10)
   //console.log('numero->>', meuNumero)
+  
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
@@ -74,60 +76,77 @@ const ListOne = (props: { idCall: any }) => {
     api
       .get(`/search/${userId}`)
       .then((res) => {
-        setName( res.data.name)
-        console.log(name)
-        console.log(typeof(name))
+        setName(res.data.name)
         setUserId(res.data.userId)
-        console.log(userId)
-        console.log(typeof(userId))
 
-       
-    //   setInfoiduser(res.data.user)
+        //   setInfoiduser(res.data.user)
       })
       .catch((err) => {
         console.error('ops! ocorreu um erro' + err)
       })
   }, [api])
 
+   const atualizarStatusChamado = async (id:number, novoStatus:string) => {
+    try {
+      api.post(`/status/${id}`)
+      console.log('Status do chamado atualizado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao atualizar o status do chamado:', error);
+    }
+  };
 
   return (
-    <section className="call">
+    <><section className="call">
       <div className="call__all">
-     
-        {chamados.map((chamado) => (
-          <section>
-            
-            <p>{chamado.id}</p>
-            <p>{chamado.description}</p>
-          </section>
+        <div className="call__list">
+          {chamados.map((chamado) => (
+            <section>
+              <p>{chamado.id}</p>
+              <p>{chamado.description}</p>
+            </section>
+          ))}
+        </div>
+
+        <div className="call__mensagens">
+          {mensagens.map((men) => (
+            <section>
+              {men.usuarioId == userIdRes ? <h3 className='call__you'>Você</h3> : <h3>{name}</h3>}
+              <p>{men.conteudo}</p>
+            </section>
+          ))}
+        </div>
+
+        <form className="call__form" onSubmit={handleSubmit}>
+          <textarea
+            value={conteudoResposta}
+            onChange={(event) => setConteudoResposta(event.target.value)}
+            placeholder="Digite a resposta..." />
+          <button type="submit">Enviar</button>
+        </form>
+
+        {chamados.map((st) => (
+        <> <select value={status} onChange={(e) => setStatus(e.target.value)}>
+        <option value="">Selecione o status</option>
+        <option value="aberto">Aberto</option>
+        <option value="encerrado">Encerrado</option>
+        <option value="pendente_usuário">Pendente Usuário</option>
+        <option value="pendente_solucionado">Pendente Solucionado</option>
+        <option value="cancelado">Cancelado</option>
+      </select>
+      <button onClick={() => atualizarStatusChamado(st.id, status)}>
+        Atualizar Status do Chamado
+      </button>
+      </>
         ))}
+
       </div>
-
-      <div className="call__mensagens">
-      
-
-        {mensagens.map((men) => (
-          <section>
-            {men.usuarioId ==  userIdRes? (
-              <p>Voce</p> 
-            ) : (
-              <p>{name}</p>
-            )
-            }
-            <p>{men.conteudo}</p>
-          </section>
-        ))}
-      </div>
-
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={conteudoResposta}
-          onChange={(event) => setConteudoResposta(event.target.value)}
-          placeholder="Digite a resposta..."
-        />
-        <button type="submit">Enviar</button>
-      </form>
     </section>
+   
+    {user?.userType == 2?
+    (<LinkComponent className='button_back' toPage={'/allchamados'}> Voltar</LinkComponent>):
+    (<LinkComponent className='button_back' toPage={'/chamados'}> Voltar</LinkComponent>)
+    }
+    </>
   )
 }
 

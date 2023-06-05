@@ -33,7 +33,7 @@ function App() {
         <Route path="/create/chamado" element={<Create />} />
         <Route path="/Profile" element={<Profile />} />
    
-        <Route path="/Home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/call/:id" element={<MeuComponenteWrapper/>} />
         <Route path="/login" element={<ListUsuarios></ListUsuarios>} />
         <Route path="/boarding" element={<Boarding />} />

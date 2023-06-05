@@ -13,6 +13,15 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const checkLocalStorage = () => {
       const data = localStorage.getItem('user');
       if (data) {
+        const user = JSON.parse(data);
+
+        if (user.userId) {
+          setUser({
+            userId: user.userId,
+            name:user.name,
+            email:user.email,
+          })
+        }
         const foundUser = JSON.parse(data)
         setUser(foundUser)
       }
@@ -35,21 +44,9 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
-  }, []);
+  }, [api,user]);
 
   
-/*
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem('user')
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser) //Para string
-   //   console.log(foundUser)
-      setUser(foundUser)
-    }else{
-      setUser(undefined)
-    }
-  }, [localStorage])
-*/
 
 
 
@@ -64,14 +61,16 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
       })
       .then((response) => {
         if(response.status === 200) {
-        const { name, email, userType } = response.data
+        const {  userId, name, email, userType } = response.data
         const json = JSON.stringify(response.data) //para json
- //       localStorage.setItem('user', json) //seta no meu localStorage
-    /*    setUser({
+        localStorage.setItem('user', json) //seta no meu localStorage
+        
+        setUser({
+          userId,
           name,
           email,
           userType
-        })*/
+        })
         setError('')
         setSucess("Cadastro efetuado com sucesso")
         
@@ -94,27 +93,34 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         email,
         password,
       })
+      
       .then((response) => {
-        const { name, email } = response.data
+        const { name, email, userType } = response.data
         const {userId} = response.data.userId
-        console.log("dados usuario>>",response.data)
-        console.log("dados usuario id>>",response.data.userId)
         const json = JSON.stringify(response.data)
         localStorage.setItem('user', json)
+        
+        alert('sucesso ao logar')
+        setSucess('Sucesso no login')
+        
         setUser({
-          userId,
+          userId: userId,
           name,
           email,
+          userType
         })
+       
       })
       .catch((error) => {
-        if (error.status === 403) {
+        
+        if (error.status == 403) {
           alert('Senha incorreta')
         } else {
           alert("Erro ao logar")
         }
         return false
       })
+
   }
 
   const signout = async () => {

@@ -56,8 +56,7 @@ const Register = () => {
       auth.register(usuario)
       const sucesso = auth.sucess
       if (sucesso) {
-        console.log(auth.sucess)
-        return navegate('/') //redirect nao funciona corretamente, ele nao atualiza o estado do sucess
+        navegate('/')
       }
     } else {
       console.log('Senhas não são iguais')

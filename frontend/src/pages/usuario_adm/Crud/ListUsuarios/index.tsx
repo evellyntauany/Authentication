@@ -19,7 +19,7 @@ interface Item {
 
 const ListUsuarios = () => {
   const api = setupAPIClient()
-  const [myData, setMyData] = useState<usersdb[]>([])
+
 
   const [listaCompleta, setListaCompleta] = useState<usersdb[]>([])
   const [listaExibida, setListaExibida] = useState<usersdb[]>([])

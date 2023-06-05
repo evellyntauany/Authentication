@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { redirect, useNavigate } from 'react-router-dom'
 import LinkComponent from '../../components/Link'
 import { AuthContext } from '../../contexts/Auth/AuthContext'
 import './stylesLogin.scss'
@@ -12,6 +12,7 @@ const Loggin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const logo = require('../../assets/logoSemFund.png')
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
@@ -19,8 +20,10 @@ const Loggin = () => {
       email,
       password,
     }
-    auth.logando(usuario)
-    if (user) {
+    await auth.logando(usuario)
+    
+    if (auth.sucess) {
+      console.log(auth.sucess)
       navegate('/')
     }
   }
@@ -65,7 +68,7 @@ const Loggin = () => {
           </section>
         </form>
 
-        <section className='link_Register'>
+        <section className="link_Register">
           <LinkComponent
             toPage="/Register"
             children="Não tem uma conta? Registre-se"

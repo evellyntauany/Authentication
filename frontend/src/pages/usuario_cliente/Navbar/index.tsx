@@ -22,7 +22,7 @@ const Navbar = () => {
           <LinkComponent toPage="/boarding" children="Home"></LinkComponent>
           <LinkComponent toPage="/listUsuarios" children="Usuario cadastrados"></LinkComponent></>
           ) : (
-            <LinkComponent toPage="/Home"  children="Home"></LinkComponent>     )   
+            <LinkComponent toPage="/"  children="Home"></LinkComponent>     )   
             }    
           </div>
           
