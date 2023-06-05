@@ -7,14 +7,24 @@
       &__all {
             background-color: #0f8b8514;
             width: 60%;
+
+      }
+
+      &__infos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
       }
 
       &__form {
             display: flex;
             flex-direction: row;
+            width: 100%;
+            justify-content: center;
 
             textarea {
-                  width: 90%;
+                  width: 70%;
                   height: 50px;
                   font-size: 1.1em;
                   padding: 1rem;
@@ -57,7 +67,7 @@
                   border-radius: 4px;
                   padding: 10px;
                   margin-bottom: 10px;
-                  width: 90%;
+                  width: 100%;
 
                   h3 {
                         font-weight: bold;
@@ -71,7 +81,24 @@
       &__you {
             border-bottom-style: ridge;
             display: inline-block;
-          
+
       }
 
+}
+
+.status__list {
+      margin-top: 1rem;
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+
+      select {
+            padding: 0.5rem;
+            width: 18%;
+            font-size: 1em;
+
+            option {
+                  font-size: 1em;
+            }
+      }
 }

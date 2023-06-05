@@ -218,17 +218,17 @@ router.put('/chamadoPendenteSolicitante/:id', async (req, res) => {
 
 
 // Rota para atualizar o status de um chamado
-router.post('status/:id', async (req, res) => {
-  const id = req.params.id;
-  console.log('ENTROU NO STATUS')
-  console.log('id vindo do chamado->', id)
+router.put('/status', async (req, res) => {
+  const {
+    status,id
+  } = req.body;
   try {
-    const service_order = await Service_order.findByPk(req.params.id);
+    const service_order = await Service_order.findByPk(id);
     if (!service_order) return res.status(404).json({
       error: 'Chamado não encontrado.'
     });
 
-    service_order.status = 'pendente'; // Atualiza o campo 'status' para 'cancelado'
+    service_order.status = status; // Atualiza o campo 'status' para 'cancelado'
     await service_order.save(); // Salva a alteração no banco de dados
 
     return res.json({
