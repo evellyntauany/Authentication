@@ -6,7 +6,7 @@ const Usuario = require('./User');
 const Chamado = require('./Service_order');
 
 const Mensagem = db.define('mensagem', {
-  id: {
+  idMensagem: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true

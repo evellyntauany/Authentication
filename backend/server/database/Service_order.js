@@ -1,12 +1,11 @@
-//Cria a tabela 'Chamado' quando não existir a tabela no banco de dados
-
 const Sequelize = require('sequelize');
 const db = require('./dataBase');
 const User = require('./User');
-//const Service_order = require('./Service_order'); // Importa o modelo de usuário
+const Solicitacao = require('./Solicitacao_ServiceOrder');
+const Status = require('./Status_ServiceOrder');
 
 const Service_order = db.define('service_order', {
-    id: {
+    idService_order: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -15,19 +14,17 @@ const Service_order = db.define('service_order', {
     description: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    tipoSolicitacao: {
-        type: Sequelize.ENUM('Formatar computador', 'Sem internet', 'Sem vídeo no computador', 'Computador lento', 'USB não finciona', 'Instalar impressora'),
-        defaultValue: 'Formatar computador'
-    },
-    status: {
-        type: Sequelize.ENUM('aberto', 'encerrado', 'pendente_usuário', 'pedente_solucionado', 'cancelado'),
-        defaultValue: 'aberto'
     }
 });
 
 // Define a relação entre Chamado e Usuário
 Service_order.belongsTo(User, { foreignKey: 'userId' });
+
+// Define a relação entre Chamado e Tipo de Solicitação
+Service_order.belongsTo(Solicitacao, { foreignKey: 'idSolicitacao_ServiceOrder' });
+
+// Define a relação entre Chamado e Tipo de Solicitação
+Service_order.belongsTo(Status, { foreignKey: 'idStatus_ServiceOrder' });
 
 // Verifica se a alteração na tabela
 Service_order.sync();
