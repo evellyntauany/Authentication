@@ -82,6 +82,7 @@ router.put('/atualizaChamado/:id', async (req, res) => {
 //Le os chamados por ID do chamado
 router.get('/chamadoOne/:id', async (req, res) => {
   const id = req.params.id;
+  console.log('id vindo -->>>', id);
   try {
 
     const service_order = await Service_order.findAll({
@@ -89,7 +90,7 @@ router.get('/chamadoOne/:id', async (req, res) => {
         id: id
       }
     });
-
+    console.log("Chamado>>>>>", service_order)
     if (!service_order) {
       return res.status(404).json({
         error: 'Chamado não encontrado.'
@@ -99,7 +100,7 @@ router.get('/chamadoOne/:id', async (req, res) => {
       return res.json(service_order);
     }
   } catch (error) {
-
+    console.log(error);
     return res.status(500).json({
       error: 'Erro ao buscar o chamado.'
     });
@@ -109,7 +110,7 @@ router.get('/chamadoOne/:id', async (req, res) => {
 //Le os chamados por ID do UserId criador do chamado {busca todos os chamados que o user criou}
 router.get('/chamadoId/:id', async (req, res) => {
   const userId = req.params.id;
-
+ console.log('id vindo -->>>',userId);
   try {
 
     const service_order = await Service_order.findAll({
@@ -117,6 +118,7 @@ router.get('/chamadoId/:id', async (req, res) => {
         userId: userId
       }
     });
+    console.log("Chamadossss>>>>>", service_order)
     if (!service_order) {
       return res.status(404).json({
         error: 'Chamado não encontrado.'
@@ -126,7 +128,7 @@ router.get('/chamadoId/:id', async (req, res) => {
       return res.json(service_order);
     }
   } catch (error) {
-
+    console.log(error);
     return res.status(500).json({
       error: 'Erro ao buscar o chamado.'
     });
@@ -145,15 +147,15 @@ router.put('/atualizaChamado/:id', async (req, res) => {
       service_order
     });
   } catch (error) {
-
+    console.log(error);
     return res.status(500).json({
       error: 'Erro ao atualizar o chamado.'
     });
   }
 });
 
-//Deleta chamado por ID (Alterar o nome despois para cancelado)
-router.put('/deleteChamado/:id', async (req, res) => {
+ //Deleta chamado por ID (Alterar o nome despois para cancelado)
+ router.put('/deleteChamado/:id', async (req, res) => {
   try {
     const service_order = await Service_order.findByPk(req.params.id);
     if (!service_order) return res.status(404).json({
@@ -187,12 +189,13 @@ router.put('/chamadoPendenteUser/:id', async (req, res) => {
       message: 'Chamado excluído com sucesso.'
     });
   } catch (error) {
-
+    console.log(error);
     return res.status(500).json({
       error: 'Erro ao excluir o chamado.'
     });
   }
 });
+
 
 router.put('/chamadoPendenteSolicitante/:id', async (req, res) => {
   try {
@@ -208,7 +211,7 @@ router.put('/chamadoPendenteSolicitante/:id', async (req, res) => {
       message: 'Chamado excluído com sucesso.'
     });
   } catch (error) {
-
+    console.log(error);
     return res.status(500).json({
       error: 'Erro ao excluir o chamado.'
     });
