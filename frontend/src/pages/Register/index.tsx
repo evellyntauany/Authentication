@@ -164,8 +164,8 @@ const Register = () => {
                 Permissao de usuario
                 <select value={selectedOption} onChange={handleSelectChange} name="nivel">
                   <option value="1" >1 - Administrador</option>
-                  <option value="2">2 - Colaborador</option>
-                  <option value="3">3 - Solucionador</option>
+                  <option value="2">2 - Solucionador</option>
+                  <option value="3">3 - Colaborador</option>
                 </select>
               </label>
             ) : (

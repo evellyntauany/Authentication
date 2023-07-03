@@ -26,7 +26,7 @@ const User = db.define('users', {
         allowNull: false,
         defaultValue: 3,
         validate: {
-            isIn: [[1, 2, 3]] // Define 1 - Administrador, 2 - Colaborador, 3 Cliente (Solucionador)
+            isIn: [[1, 2, 3]] // Define 1 - Administrador, 2 - Solucionador, 3 Colaborador (Cliente)
              
         }
     }
