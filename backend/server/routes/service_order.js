@@ -25,8 +25,13 @@ router.post('/chamados', async (req, res) => {
 
 router.get("/allchamados", async (req, res) => {
   await Service_order.findAll({
+<<<<<<< HEAD
       attributes: ['id', 'description', 'status', 'createdAt', 'userId']
     })
+=======
+    attributes: ['id', 'description', 'status', 'createdAt', 'userId']
+  })
+>>>>>>> 2b8eca05a6a5e18a08ca629a0cc4ac1544aecf38
     .then((data) => {
       return res.json({
         data
@@ -38,7 +43,10 @@ router.get("/allchamados", async (req, res) => {
       })
     })
 })
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2b8eca05a6a5e18a08ca629a0cc4ac1544aecf38
 //Chamados por tipo
 /*
 router.get('/chamadoTipo/:tipoSolicitacao', async (req, res) => {
@@ -106,6 +114,7 @@ router.get('/chamadoOne/:id', async (req, res) => {
     });
   }
 });
+<<<<<<< HEAD
 
 //Le os chamados por ID do UserId criador do chamado {busca todos os chamados que o user criou}
 router.get('/chamadoId/:id', async (req, res) => {
@@ -113,6 +122,15 @@ router.get('/chamadoId/:id', async (req, res) => {
  console.log('id vindo -->>>',userId);
   try {
 
+=======
+
+//Le os chamados por ID do UserId criador do chamado {busca todos os chamados que o user criou}
+router.get('/chamadoId/:id', async (req, res) => {
+  const userId = req.params.id;
+  console.log('id vindo -->>>', userId);
+  try {
+
+>>>>>>> 2b8eca05a6a5e18a08ca629a0cc4ac1544aecf38
     const service_order = await Service_order.findAll({
       where: {
         userId: userId
@@ -141,6 +159,7 @@ router.put('/atualizaChamado/:id', async (req, res) => {
     const service_order = await Service_order.findByPk(req.params.id);
     if (!service_order) return res.status(404).json({
       error: 'Chamado não encontrado.'
+<<<<<<< HEAD
     });
     await service_order.update(req.body);
     return res.json({
@@ -156,6 +175,23 @@ router.put('/atualizaChamado/:id', async (req, res) => {
 
  //Deleta chamado por ID (Alterar o nome despois para cancelado)
  router.put('/deleteChamado/:id', async (req, res) => {
+=======
+    });
+    await service_order.update(req.body);
+    return res.json({
+      service_order
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      error: 'Erro ao atualizar o chamado.'
+    });
+  }
+});
+
+//Deleta chamado por ID (Alterar o nome despois para cancelado)
+router.put('/deleteChamado/:id', async (req, res) => {
+>>>>>>> 2b8eca05a6a5e18a08ca629a0cc4ac1544aecf38
   try {
     const service_order = await Service_order.findByPk(req.params.id);
     if (!service_order) return res.status(404).json({
@@ -167,11 +203,19 @@ router.put('/atualizaChamado/:id', async (req, res) => {
 
     return res.json({
       message: 'Chamado excluído com sucesso.'
+<<<<<<< HEAD
     });
   } catch (error) {
     return res.status(500).json({
       error: 'Erro ao excluir o chamado.'
     });
+=======
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: 'Erro ao excluir o chamado.'
+    });
+>>>>>>> 2b8eca05a6a5e18a08ca629a0cc4ac1544aecf38
   }
 });
 
@@ -196,7 +240,10 @@ router.put('/chamadoPendenteUser/:id', async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2b8eca05a6a5e18a08ca629a0cc4ac1544aecf38
 router.put('/chamadoPendenteSolicitante/:id', async (req, res) => {
   try {
     const service_order = await Service_order.findByPk(req.params.id);
@@ -218,6 +265,7 @@ router.put('/chamadoPendenteSolicitante/:id', async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 
 
 // Rota para atualizar o status de um chamado
@@ -246,4 +294,6 @@ router.put('/status', async (req, res) => {
 
 
 
+=======
+>>>>>>> 2b8eca05a6a5e18a08ca629a0cc4ac1544aecf38
 module.exports = router;
