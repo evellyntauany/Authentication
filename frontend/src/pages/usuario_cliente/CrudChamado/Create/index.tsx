@@ -47,12 +47,6 @@ const ChamadoFormulario=()=> {
         Descrição:
         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
       </label>
-
-      <select>
-        <option>Teste</option>
-        <option>Dois</option>
-      </select>
-      
       
       <button type="submit">Enviar</button>
     </form>
