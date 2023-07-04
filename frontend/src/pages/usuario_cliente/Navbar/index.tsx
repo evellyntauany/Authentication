@@ -16,16 +16,8 @@ const Navbar = () => {
       </div>
      
         <div className="Container__links">
-         
-          {user?.userType === 1 ? (
-          <>
-          <LinkComponent toPage="/boarding" children="Home"></LinkComponent>
-          <LinkComponent toPage="/listUsuarios" children="Usuario cadastrados"></LinkComponent></>
-          ) : (
-            <LinkComponent toPage="/"  children="Home"></LinkComponent>     )   
-            }    
+          <LinkComponent toPage="/"  children="Home"></LinkComponent>         
           </div>
-          
 
           <div className='Container__btns'>
           {user ? (

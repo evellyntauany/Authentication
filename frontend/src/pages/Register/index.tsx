@@ -15,11 +15,9 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [Error, setError] = useState('')
-  const [selectedOption, setSelectedOption] = useState<number>(3);
 
   const navigate = useNavigate()
   const logo = require('../../assets/logoSemFund.png')
-  const { user } = useContext(AuthContext)
 
   const [form, setForm] = useState({
     email: {
@@ -32,31 +30,23 @@ const Register = () => {
     },
   })
 
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = Number(event.target.value);
-    setSelectedOption(selectedValue);
-    console.log("setando o numero->>",selectedValue);
-  };
-  console.log(selectedOption)
-
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     setError('')
 
     if (password == confirmPassword) {
       console.log('entrou aqui')
-      console.log(selectedOption)
       const usuario = {
         name,
         email,
         password,
-        selectedOption
       }
 
       auth.register(usuario)
       const sucesso = auth.sucess
-      if (sucesso) {
-        navegate('/')
+      if(sucesso){
+        console.log(auth.sucess)
+         return navegate('/') //redirect nao funciona corretamente, ele nao atualiza o estado do sucess
       }
     } else {
       console.log('Senhas não são iguais')
@@ -65,6 +55,7 @@ const Register = () => {
   }
   return (
     <>
+
       <div className="ContainerRegister">
         <div className="form__login">
           {auth.error ? <p className="error_class">{auth.error}</p> : ''}
@@ -157,19 +148,6 @@ const Register = () => {
               ></input>
               {Error ? <p className="error">{Error}</p> : ''}
             </label>
-
-            {user?.userType === 1 ? (
-              <label className="label_login label__select">
-                Permissao de usuario
-                <select value={selectedOption} onChange={handleSelectChange} name="nivel">
-                  <option value="1" >1 - Administrador</option>
-                  <option value="2">2 - Colaborador</option>
-                  <option value="3">3- Cliente</option>
-                </select>
-              </label>
-            ) : (
-              ''
-            )}
 
             <section className="section_btnLogin">
               <button

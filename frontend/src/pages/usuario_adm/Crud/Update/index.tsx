@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import LinkComponent from '../../../../components/Link'
 import { setupAPIClient } from '../../../../hooks/useApi'
 import { useNavigate } from 'react-router-dom';
+import Navbar from './../../Navbar/index';
 
 const UpdateUser = () => {
   const api = setupAPIClient()
@@ -11,8 +12,6 @@ const UpdateUser = () => {
   const [email, setEmail] = useState('')
   const navegate = useNavigate()
   const [error,setError] =useState('')
-
-  
 
   useEffect(() => {
     api
@@ -25,7 +24,7 @@ const UpdateUser = () => {
       .catch((err) => {
         console.error('ops! ocorreu um erro' + err)
       })
-  }, [api, id])
+  }, [])
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
@@ -52,6 +51,7 @@ const UpdateUser = () => {
   }
   return (
     <>
+    <Navbar></Navbar>
     <div className="ContainerUpdate">
       <h1>Pagina de atualizacao de cadastro</h1>
       <form onSubmit={handleSubmit}>

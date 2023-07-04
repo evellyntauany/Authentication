@@ -1,10 +1,12 @@
 import LinkComponent from '../../../components/Link'
 import ListUsuarios from '../Crud/ListUsuarios'
+import Navbar from '../Navbar'
 import './styleHomeAdm.scss'
 
 const Home = () => {
   return (
     <>
+      <Navbar></Navbar>
       <div className="Container_Adm">
         <div className="hero"></div>
         <div className="content_list">

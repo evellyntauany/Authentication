@@ -1,54 +1,44 @@
-import { Route, Routes, useParams } from 'react-router-dom'
-import { RequireAuth } from './contexts/Auth/RequireAuth'
-import { PermissionType } from './types/PermissionType'
+import { Route, Routes } from "react-router-dom";
+import { RequireAuth } from "./contexts/Auth/RequireAuth";
+import { RequireAuthAdm } from "./contexts/CrudUsers/RequireAuthAdm";
 
-import ListUsuarios from './pages/usuario_adm/Crud/ListUsuarios'
-import Update from './pages/usuario_adm/Crud/Update'
+import HomeAdm from "./pages/usuario_adm/HomeAdm";
+import ListUsuarios from "./pages/usuario_adm/Crud/ListUsuarios";
+import Update from "./pages/usuario_adm/Crud/Update";
 
-import Home from './pages/Home'
-import Navbar from './pages/usuario_cliente/Navbar'
-import Register from './pages/Register'
-import Profile from './pages/Profile/index'
-import Create from './pages/usuario_cliente/CrudChamado/Create'
-import ListChamadosId from './pages/usuario_cliente/CrudChamado/ListChamadosId'
-import PrivateRoute from './contexts/Auth/PrivateRoute'
-import PageError from './pages/Error'
-import Boarding from './pages/usuario_adm/Boarding'
-import Loggin from './pages/Loggin'
-import ListChamados from './pages/usuario_colab/ListChamados'
-import ListOne from './pages/usuario_colab/ListOne'
+import Home from "./pages/Home";
+import Navbar from "./pages/usuario_cliente/Navbar";
+import PageAcess from "./pages/usuario_cliente/PageAcess";
+import Loggin from "./pages/Loggin";
+import Register from "./pages/Register";
+import Profile from "./pages/Profile/index";
+import Create from "./pages/usuario_cliente/CrudChamado/Create"
+import ListChamados from "./pages/usuario_cliente/CrudChamado/ListChamados";
+
+
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/erro" element={<PageError />} />
-        <Route path="/chamados" element={<ListChamadosId></ListChamadosId>} />
-        <Route path="/allchamados" element={<ListChamados />} />
-        <Route path="/login" element={<Loggin/>} />
-     
-        <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
-        <Route path="/user/:id" element={<Update />} />
-        <Route path="/create/chamado" element={<Create />} />
-        <Route path="/Profile" element={<Profile />} />
-   
-        <Route path="/" element={<Home />} />
-        <Route path="/call/:id" element={<MeuComponenteWrapper/>} />
-        <Route path="/login" element={<ListUsuarios></ListUsuarios>} />
-        <Route path="/boarding" element={<Boarding />} />
-        <Route path="/Register" element={<Register />} />
-      </Routes>
-    </>
-  )
+    <Navbar />
+    <Routes>
+
+      <Route path="/" element={<Home />} />
+      <Route path="/Login" element={<RequireAuth><PageAcess /></RequireAuth>} />
+      <Route path="PageAcess" element={<RequireAuth><PageAcess /></RequireAuth>} />
+      <Route path="/Register" element={<Register />} />
+      <Route path="/Profile" element={<RequireAuth><Profile/></RequireAuth>} />
+      <Route path="/chamados" element={<ListChamados />} />
+
+      <Route path="/admin" element={<HomeAdm />} />
+      <Route path="/listUsuarios" element={<ListUsuarios></ListUsuarios>} />
+      <Route path="/user/:id" element={<Update />} />
+      <Route path="/create/chamado" element={<Create />} />
+      
+
+
+    </Routes></>
+  );
 }
 
-
-const MeuComponenteWrapper: React.FC = () => {
-  const { id } = useParams();
- console.log('id da pagina:', id)
- const idVindo = id
-  return <ListOne idCall={idVindo} />;
-};
-
-export default App
+export default App;

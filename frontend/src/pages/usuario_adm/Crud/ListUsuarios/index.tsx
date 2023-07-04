@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Navbar from '../../Navbar'
 import { setupAPIClient } from '../../../../hooks/useApi'
 import { Link } from 'react-router-dom'
 import './styleList.scss'
@@ -6,7 +7,6 @@ import LinkComponent from '../../../../components/Link'
 import { FaRegTrashAlt } from 'react-icons/fa'
 
 interface usersdb {
-  userType: number;
   userId : number
   name: string
   email: string
@@ -19,7 +19,7 @@ interface Item {
 
 const ListUsuarios = () => {
   const api = setupAPIClient()
-
+  const [myData, setMyData] = useState<usersdb[]>([])
 
   const [listaCompleta, setListaCompleta] = useState<usersdb[]>([])
   const [listaExibida, setListaExibida] = useState<usersdb[]>([])
@@ -51,10 +51,10 @@ const ListUsuarios = () => {
 
   return (
     <>
+      <Navbar></Navbar>
       <div>
-      <div className="register_user">
+      <div className="users__div">
           <LinkComponent
-            className='register_user_'
             toPage="/Register"
             children="Registrar novo usuario no sistema"
           ></LinkComponent>
@@ -73,7 +73,6 @@ const ListUsuarios = () => {
                   <td>Id</td>
                   <th>Nome</th>
                   <th>Email</th>
-                  <th>Permissoes</th>
                   <th>Ações</th>
                 </tr>
               </thead>
@@ -84,7 +83,6 @@ const ListUsuarios = () => {
                 <td key={item.userId }>{item.userId }</td>
                 <td >{item.name}</td>
                 <td>{item.email}</td>
-                <td>{item.userType}</td>
                 <td>
                   <div className="buttons">
                   <button

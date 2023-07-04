@@ -3,13 +3,11 @@ export type UserRegister ={
     name:string;
     email:string;
     password?:string;
-    selectedOption?:number
 }
 export type User ={
     userId?:number;
     name:string;
     email:string;
-    userType?:number;
 }
 
 

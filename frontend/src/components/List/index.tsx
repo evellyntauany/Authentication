@@ -1,40 +1,31 @@
 import { setupAPIClient } from '../../hooks/useApi'
-import LinkComponent from '../Link'
-import './listStyled.scss'
 
 type PropsList = {
-  lista: Array<string | number | any> | any[]
-  Nameclass?: string
+  lista: Array<string | number | any>
+  Nameclass?: string;
 }
 
 const List = (props: PropsList) => {
   const api = setupAPIClient()
 
   const onDelete = (id: number) => {
-    api.put(`/deleteChamado/${id}`)
+    console.log(id)
+    api.delete(`/deleteChamado/${id}`)
   }
 
   return (
-    <section className="map__list">
+    <ul>
       {props.lista.map((chamado) => (
-        <LinkComponent toPage={`/call/${chamado.id}`}>
-          <div className={props.Nameclass}>
-            <li>Id chamado: {chamado.id}</li>
-            <li>Id do user que criou: {chamado.userId}</li>
-            <li>Criado em: {chamado.createdAt}</li>
-            <li>Descricao: {chamado.description}</li>
-            <li>Status:{chamado.status}</li>
-            {chamado.status != 'cancelado' ? (
-              <button onClick={() => onDelete(chamado.id)}>
-                cancelar chamado
-              </button>
-            ) : (
-              ''
-            )}
-          </div>
-        </LinkComponent>
+        <div className={props.Nameclass}>
+          <li>Id chamado: {chamado.id}</li>
+          <li>Id do user que criou: {chamado.UserId}</li>
+          <li>Criado em: {chamado.createdAt}</li>
+          <li>Descricao: {chamado.description}</li>
+          <li>Status:{chamado.status}</li>
+          <button onClick={() => onDelete(chamado.id)}>Excluir</button>
+        </div>
       ))}
-    </section>
+    </ul>
   )
 }
 

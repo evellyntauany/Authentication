@@ -1,13 +1,9 @@
 .open_chamado{
-    section{
-        display:flex;
-        margin:2rem 0;
-    }
 
     &__label{
-    
+        padding:10px;
         input{
-            padding: 2rem;
+            padding:10px;
         }
     }
     button{
